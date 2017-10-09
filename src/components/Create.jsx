@@ -1,100 +1,72 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { haikuLineKeyUp, haikuLineDone } from '../action-creators';
+import AddHaiku from './presentation/AddHaiku';
+import Row from './presentation/Row';
 
 const syllable = require('syllable');
-const sentencer = require('sentencer');
-sentencer.configure({
-  actions: {
-    definite_article: function () { return 'the'; },
-    article: function () {
-      const articles = ['a', 'an', 'the'];
-      return articles[Math.floor(Math.random() * 100) % articles.length];
-    }
-  }
-});
-
-class Line extends React.Component {
-  constructor () {
-    super();
-    this.state = {
-      syllableCount: 0,
-      words: [],
-      limitReached: false
-    }
-    this.update = this.update.bind(this)
-  }
-
-  update (evt) {
-    const content = this.refs.line.value,
-      words = content.split(' ');
-    const syllableCount = syllable(content);
-
-    /*
-     * set state
-     */
-    let newState = { syllableCount, words };
-
-    if (syllableCount >= 5) {
-      newState.limitReached = true;  
-    }
-
-    this.setState(newState);
-  }
-
-  render () {
-    const readonly = this.state.limitReached;
-    return (
-      <div>
-        <input 
-          ref="line"
-          type="text"
-          onKeyUp={this.update}
-          placeholder="hi default value" 
-          readOnly={readonly}
-          />
-        {this.state.syllableCount}
-      </div>
-    );
-  }
-}
 
 const Button = (props) => 
   <button 
     onClick={props.onClickHandler}>
     {props.text}
   </button>;
-    
+
+const Buttons = (props) => 
+  <div className="flex-container">
+    <AddHaiku />
+    <Button
+      text="inspire me"
+      onClickHandler={props.inspire} />
+  </div>
+
+const mapStateToProps = (state) => state.haiku;
 
 class Create extends React.Component {
-  constructor () {
-    super();
-    this.state = {
-    };
-    this.inspire = this.inspire.bind(this);
-    this.send = this.send.bind(this);
-  }
 
-  inspire () {
-  }
+  onLineKeyUp (index, evt) {
+    /*
+     * enter
+     */
+    if (evt.keyCode === 13) {
+    }
 
-  send () {
-    alert('sending haiku');
+    const content = evt.target.value;
+    const syllables = syllable(content);
+    
+    if (syllables <= +evt.target.getAttribute('maxsyllablecount')) {
+      this.props.dispatch(haikuLineKeyUp(content, syllables, index));
+    }
+    else {
+      evt.target.value = this.props.lines[index].content.trim();
+    }
   }
 
   render () {
+    let { lines } = this.props;
+
     return (
-      <div className="flex-container">
-        <Line ref="first" />
-        <Line ref="second" />
-        <Line ref="third" />
-        <Button
-          text="send"
-          onClickHandler={this.send} />
-        <Button
-          text="inspire me"
-          onClickHandler={this.inspire} />
+      <div className="lines flex-container">
+        <Row 
+          onLineKeyUp={this.onLineKeyUp.bind(this, 0)}
+          index={0} 
+          syllables={lines[0].syllables}
+          maxSyllableCount={5} />
+        <Row 
+          onLineKeyUp={this.onLineKeyUp.bind(this, 1)}
+          index={1} 
+          syllables={lines[1].syllables}
+          maxSyllableCount={3} />
+        <Row 
+          onLineKeyUp={this.onLineKeyUp.bind(this, 2)}
+          index={2} 
+          syllables={lines[2].syllables}
+          maxSyllableCount={5} />
+        <Buttons 
+          inspire={this.inspire} />
       </div>
     );
   }
 };
 
-export default Create;
+export default connect(mapStateToProps, null)(Create);

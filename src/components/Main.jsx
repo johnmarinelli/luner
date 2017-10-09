@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { spring, AnimatedRoute, AnimatedSwitch } from 'react-router-transition';
+import { Route } from 'react-router-dom';
+import { spring, AnimatedSwitch } from 'react-router-transition';
 import Create from './Create';
 import About from './About';
 
@@ -35,10 +35,19 @@ const bounceTransition = {
 
 const Main = () => 
   <main>
-    <Switch>
-      <Route exact path="/" component={Create} />
-      <Route path="/about" component={About} />
-    </Switch>
+    <AnimatedSwitch
+        mapStyles={mapStyles}
+        atEnter={bounceTransition.atEnter} 
+        atLeave={bounceTransition.atLeave} 
+        atActive={bounceTransition.atActive} >
+      <Route 
+        exact 
+        path="/" 
+        component={Create} />
+      <Route 
+        path="/about" 
+        component={About} />
+    </AnimatedSwitch>
   </main>
 
 export default Main;

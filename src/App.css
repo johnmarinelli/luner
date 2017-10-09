@@ -34,6 +34,6 @@ pre, textarea {
   display: flex;
 }
 
-.flex-item {
-  flex: wrap;
+.lines {
+  flex-direction: column;
 }

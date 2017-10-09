@@ -1,0 +1,11 @@
+.line {
+  text-transform: lowercase;
+}
+
+.line {
+  background-color: blue;
+}
+
+.line:focus {
+  background-color: white;;
+}
