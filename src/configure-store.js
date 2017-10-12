@@ -3,7 +3,7 @@ import createHistory from 'history/createBrowserHistory';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import haiku from './reducers';
+import haikuApp from './reducers';
 
 const history = createHistory();
 
@@ -12,7 +12,7 @@ const configureStore = () => {
   const middlewares = [thunk, reduxRouterMiddleware, logger];
   const store = createStore(
     combineReducers({
-      haiku,
+      haikuApp,
       router: routerReducer
     }), 
     applyMiddleware(...middlewares)

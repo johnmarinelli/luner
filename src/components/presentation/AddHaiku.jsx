@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addHaiku } from '../../action-creators';
 
 const mapStateToProps = state => ({
-  haiku: state.haiku,
+  haiku: state.haikuApp.haiku,
   addHaiku
 });
 
@@ -12,7 +12,7 @@ let AddHaiku = ({
   addHaiku,
   dispatch
 }) => {
-  const content = haiku.lines.join('');
+  const content = haiku.lines.map(line => line.content).join("\n");
   const dispatchAddHaiku = () => {
     dispatch(addHaiku(content));
   };

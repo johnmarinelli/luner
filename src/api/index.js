@@ -1,23 +1,26 @@
 import { v4 } from 'node-uuid';
+import fire from '../firebase';
 
 const db = {
   haikus: []
 };
 
-const delay = (duration) => 
-  new Promise((res, rej) => 
-    setTimeout(() => 
-      res(), 
-      duration));
+export const fetchHaikus = (filter) => 
+  fire
+    .database()
+    .ref('haikus')
+    .orderByKey()
+    .limitToLast(20)
+    .once('value')
+    .then(snapshot => snapshot.val());
 
-export const addHaiku = (text) => 
-  delay(500)
-    .then(() => {
-      const haiku = {
-        id: v4(),
-        text
-      };
+export const addHaiku = (text) => {
+  const createdAt = Date.now();
+  const haiku = { id: v4(), text, createdAt };
 
-      db.haikus.push(haiku);
-      return haiku;
-    })
+  return fire
+    .database()
+    .ref('haikus')
+    .push(haiku)
+    .then(__ => haiku);
+}

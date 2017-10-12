@@ -9,13 +9,10 @@ let Line = ({
   onKeyUp,
   dispatch
 }) =>  {
-  let input;
-
   return (
     <div>
       <input 
         type="text"
-        ref={node => input = node}
         onKeyUp={onKeyUp}
         placeholder="default value" 
         className="line"

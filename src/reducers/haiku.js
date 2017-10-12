@@ -1,12 +1,10 @@
-import { combineReducers } from 'redux';
-
 const initialState = {
   lines: [
     { content: '', syllables: 0 },
     { content: '', syllables: 0 },
     { content: '', syllables: 0 },
   ]
-}
+};
 
 const lines = (state, action) => {
   switch (action.type) {
@@ -30,8 +28,7 @@ const haikuApp = (state = initialState, action) => {
         lines: lines(state.lines, action)
       });
     case 'HAIKU_LINE_DONE':
-    default:
-      return state;
+    default: return state;
   }
 };
 

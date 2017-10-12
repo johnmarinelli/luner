@@ -3,9 +3,9 @@
 }
 
 .line {
-  background-color: blue;
+  background-color: #eee;
 }
 
 .line:focus {
-  background-color: white;;
+  background-color: white;
 }

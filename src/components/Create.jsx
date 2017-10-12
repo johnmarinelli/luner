@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { haikuLineKeyUp, haikuLineDone } from '../action-creators';
+import { haikuLineKeyUp } from '../action-creators';
 import AddHaiku from './presentation/AddHaiku';
 import Row from './presentation/Row';
 
@@ -20,9 +20,13 @@ const Buttons = (props) =>
       onClickHandler={props.inspire} />
   </div>
 
-const mapStateToProps = (state) => state.haiku;
+const mapStateToProps = (state) => state.haikuApp.haiku;
 
 class Create extends React.Component {
+
+  focusNextInput (index) {
+    //console.log(ReactDOM.findDOMNode(
+  }
 
   onLineKeyUp (index, evt) {
     /*
@@ -43,6 +47,7 @@ class Create extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     let { lines } = this.props;
 
     return (

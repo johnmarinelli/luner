@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^4.5.0",
     "history": "^4.7.2",
     "node-uuid": "^1.4.8",
     "normalizr": "^3.2.3",
@@ -13,10 +14,12 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-router-transition": "^1.1.0",
     "react-scripts": "1.0.14",
+    "reactfire": "^1.0.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "syllable": "^2.2.0"
+    "syllable": "^2.2.0",
+    "uninstall": "0.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

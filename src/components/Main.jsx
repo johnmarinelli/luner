@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Create from './Create';
 import About from './About';
+import ShowHaikus from './container/ShowHaikus';
 
 function mapStyles (styles) {
   return {
@@ -47,6 +48,9 @@ const Main = () =>
       <Route 
         path="/about" 
         component={About} />
+      <Route 
+        path="/browse-haikus/:filter" 
+        component={ShowHaikus} />
     </AnimatedSwitch>
   </main>
 
