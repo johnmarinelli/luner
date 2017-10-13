@@ -49,7 +49,7 @@ const Main = () =>
         path="/about" 
         component={About} />
       <Route 
-        path="/browse-haikus/:filter" 
+        path="/browse-haikus/:filter?" 
         component={ShowHaikus} />
     </AnimatedSwitch>
   </main>
