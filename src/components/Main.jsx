@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Create from './Create';
 import About from './About';
-import ShowHaikus from './container/ShowHaikus';
+import ShowHaikus from './presentation/ShowHaikus';
 
 function mapStyles (styles) {
   return {

@@ -29,16 +29,22 @@ import { combineReducers } from 'redux';
 const createList = (filter) => {
 
   const ids = (state = [], action) => {
-    console.log(action);
     switch (action.type) {
-      case 'HAIKUS_FETCH_SUCCESS':
+      case 'HAIKUS_FETCH_SUCCESS': 
         return filter === action.filter ?
-          action.response.result :
+          action.response.result : 
           state;
-      case 'HAIKU_ADD_SUCCESS':
-        return filter === action.filter ?
-          [...state, action.response.result] :
-          state;
+      case 'HAIKU_FROM_FIREBASE': {
+        /*
+         * if id is not already in state
+         */
+        if (-1 === state.indexOf(action.response.result)) {
+          return filter === action.filter ?
+            [...state, action.response.result] :
+            state;
+        }
+        else return state;
+      }
       default: return state;
     }
   };

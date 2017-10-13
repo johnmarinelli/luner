@@ -4,6 +4,12 @@ import * as api from '../api';
 import fire from '../firebase';
 import { getIsFetching } from '../reducers';
 
+const haikuFromFirebase = (haiku) => ({
+  type: 'HAIKU_FROM_FIREBASE',
+  filter: 'all',
+  response: normalize(haiku, schema.haiku)
+});
+
 const haikuAddSuccess = (haiku) => ({
   type: 'HAIKU_ADD_SUCCESS',
   filter: 'all',
@@ -32,7 +38,7 @@ export const watchHaikuAddedEvent = (dispatch) =>
     .database()
     .ref('haikus')
     .on('child_added', (ss) => {
-      dispatch(haikuAddSuccess(ss.val()))
+      dispatch(haikuFromFirebase(ss.val()))
     });
 
 export const fetchHaikus = (filter) => (dispatch, getState) => {
