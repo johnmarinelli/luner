@@ -14,6 +14,16 @@ const mapStateToProps = (state, { match }) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, { match }) => {
+  const filter = match.params.filter || 'all';
+
+  actions.watchHaikuAddedEvent(dispatch);
+
+  return {
+    fetchHaikus: () => dispatch(actions.fetchHaikus(filter))
+  }
+};
+
 class ShowHaikus extends React.Component {
   fetchData () {
     const { filter, fetchHaikus } = this.props;
@@ -25,27 +35,34 @@ class ShowHaikus extends React.Component {
     fetchHaikus(filter);
   }
 
-  constructor () {
-    super();
-  }
-
   componentDidMount () {
     this.fetchData();
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.filter !== this.props.filter) {
+    if (prevProps.filter !== this.props.filter ||
+        prevProps.haikus.length !== this.props.haikus.length) {
       this.fetchData();
     }
   }
 
   render () {
+    const { haikus } = this.props;
+
+    const renderedHaikus = haikus.map(haiku => 
+      <div key={haiku.id}>
+      {haiku.lines.reduce((acc, line) => {
+        return acc + line.content + "\n";
+      }, '')}
+      </div>
+    );
+
     return (
       <div>
-        {this.props.filter}
+        {renderedHaikus}
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, actions)(ShowHaikus);
+export default connect(mapStateToProps, mapDispatchToProps)(ShowHaikus);

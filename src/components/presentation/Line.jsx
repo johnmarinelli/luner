@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { haikuLineDone } from '../../action-creators';
 import './Line.css';
 
 let Line = ({
   index,
   maxSyllableCount,
+  lineContent,
   onKeyUp,
   dispatch
 }) =>  {
@@ -14,7 +14,8 @@ let Line = ({
       <input 
         type="text"
         onKeyUp={onKeyUp}
-        placeholder="default value" 
+        placeholder={'' === lineContent ? 'default value' : ''}
+        defaultValue={lineContent}
         className="line"
         maxsyllablecount={maxSyllableCount}
         maxLength={maxSyllableCount * 10}

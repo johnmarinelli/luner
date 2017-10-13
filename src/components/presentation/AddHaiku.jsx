@@ -12,15 +12,13 @@ let AddHaiku = ({
   addHaiku,
   dispatch
 }) => {
-  const content = haiku.lines.map(line => line.content).join("\n");
-  const dispatchAddHaiku = () => {
-    dispatch(addHaiku(content));
-  };
+  const dispatchAddHaiku = (haiku) => 
+    dispatch(addHaiku(haiku));
 
   return (
     <div>
       <button 
-        onClick={dispatchAddHaiku}>
+        onClick={dispatchAddHaiku.bind(null, haiku)}>
         Send
       </button>
     </div>

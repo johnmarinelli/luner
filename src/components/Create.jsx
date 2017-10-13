@@ -29,12 +29,6 @@ class Create extends React.Component {
   }
 
   onLineKeyUp (index, evt) {
-    /*
-     * enter
-     */
-    if (evt.keyCode === 13) {
-    }
-
     const content = evt.target.value;
     const syllables = syllable(content);
     
@@ -47,7 +41,6 @@ class Create extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     let { lines } = this.props;
 
     return (
@@ -56,16 +49,19 @@ class Create extends React.Component {
           onLineKeyUp={this.onLineKeyUp.bind(this, 0)}
           index={0} 
           syllables={lines[0].syllables}
+          lineContent={lines[0].content}
           maxSyllableCount={5} />
         <Row 
           onLineKeyUp={this.onLineKeyUp.bind(this, 1)}
           index={1} 
           syllables={lines[1].syllables}
+          lineContent={lines[1].content}
           maxSyllableCount={3} />
         <Row 
           onLineKeyUp={this.onLineKeyUp.bind(this, 2)}
           index={2} 
           syllables={lines[2].syllables}
+          lineContent={lines[2].content}
           maxSyllableCount={5} />
         <Buttons 
           inspire={this.inspire} />

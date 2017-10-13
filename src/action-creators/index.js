@@ -1,17 +1,39 @@
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
 import * as api from '../api';
+import fire from '../firebase';
 import { getIsFetching } from '../reducers';
 
 const haikuAddSuccess = (haiku) => ({
   type: 'HAIKU_ADD_SUCCESS',
-  response: haiku
+  filter: 'all',
+  response: normalize(haiku, schema.haiku)
 });
 
 const haikusFetchRequest = (filter = 'all') => ({
   type: 'HAIKUS_FETCH_REQUEST',
   filter
 });
+
+const haikusFetchSuccess = (filter = 'all', response) => ({
+  type: 'HAIKUS_FETCH_SUCCESS',
+  filter,
+  response: normalize(response, schema.arrayOfHaikus)
+});
+
+const haikusFetchFailure = (filter = 'all', error) => ({
+  type: 'HAIKUS_FETCH_FAILURE',
+  filter,
+  message: error.message || 'Something went wrong.'
+});
+
+export const watchHaikuAddedEvent = (dispatch) => 
+  fire
+    .database()
+    .ref('haikus')
+    .on('child_added', (ss) => {
+      dispatch(haikuAddSuccess(ss.val()))
+    });
 
 export const fetchHaikus = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
@@ -22,27 +44,19 @@ export const fetchHaikus = (filter) => (dispatch, getState) => {
 
   return api
     .fetchHaikus(filter)
-    .then(response => {
-      dispatch({
-        type: 'HAIKUS_FETCH_SUCCESS',
-        filter,
-        response: normalize(response, schema.arrayOfHaikus)
-      });
-    },
-    error => {
-      dispatch({
-        type: 'HAIKUS_FETCH_FAILURE',
-        filter,
-        message: error.message || 'Something went wrong.'
-      });
-    });
+    .then(response => dispatch(haikusFetchSuccess(filter, response)),
+      error => dispatch(haikusFetchFailure(filter, error)));
 };
 
-export const addHaiku = (text) => (dispatch) => 
-  api.addHaiku(text)
+export const addHaiku = (haiku) => (dispatch) => 
+  api
+    .addHaiku(haiku)
     .then(response => 
       dispatch(haikuAddSuccess(response)));
 
+/*
+ * fired whenever user keyUp's in haiku form
+ */
 export const haikuLineKeyUp = (content, syllables, index) => ({
   type: 'HAIKU_LINE_KEYUP',
   content,

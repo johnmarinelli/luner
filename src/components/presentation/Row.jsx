@@ -6,12 +6,14 @@ const Row = ({
   index,
   maxSyllableCount,
   syllables,
+  lineContent,
   onLineKeyUp
 }) => 
   <div>
     <Line 
       onKeyUp={onLineKeyUp} 
       index={index} 
+      lineContent={lineContent}
       maxSyllableCount={maxSyllableCount} />
     <Counter
       count={syllables}

@@ -16,7 +16,6 @@ const lines = (state, action) => {
         ...state.slice(index + 1)
       ];
     }
-    case 'HAIKU_LINE_DONE': 
     default: return state;
   }
 };
@@ -27,7 +26,6 @@ const haikuApp = (state = initialState, action) => {
       return Object.assign({}, state, {
         lines: lines(state.lines, action)
       });
-    case 'HAIKU_LINE_DONE':
     default: return state;
   }
 };

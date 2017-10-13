@@ -1,19 +1,42 @@
 import { combineReducers } from 'redux';
 
 /*
- * returns a reducer that manages the ids
- * for `filter`
+ * jm 12/10/17
+ * App state shape:
+ * 
+ * {
+ *  ...
+ *  haikuApp: {
+ *    haiku: { ... },
+ *    haikus: {
+ *      byId: { ... },
+ *      listByFilter: {
+ *        all: {
+ *          errorMessage,
+ *          ids,
+ *          isFetching
+ *        }
+ *      }
+ *    }
+ *  },
+ *  ...
+ *
+ * }
+ *
+ * this file controls the slice of state starting at `listByFilter`.
  */
+
 const createList = (filter) => {
 
   const ids = (state = [], action) => {
+    console.log(action);
     switch (action.type) {
-      case 'FETCH_HAIKUS_SUCCESS':
+      case 'HAIKUS_FETCH_SUCCESS':
         return filter === action.filter ?
           action.response.result :
           state;
-      case 'ADD_HAIKU_SUCCESS':
-        return 'completed' !== filter ?
+      case 'HAIKU_ADD_SUCCESS':
+        return filter === action.filter ?
           [...state, action.response.result] :
           state;
       default: return state;
@@ -42,9 +65,9 @@ const createList = (filter) => {
     }
 
     switch (action.type) {
-      case 'FETCH_HAIKUS_FAILURE': return action.message;
-      case 'FETCH_HAIKUS_REQUEST':
-      case 'FETCH_HAIKUS_SUCCESS': return null;
+      case 'HAIKUS_FETCH_FAILURE': return action.message;
+      case 'HAIKUS_FETCH_REQUEST':
+      case 'HAIKUS_FETCH_SUCCESS': return null;
       default: return state;
     }
   };

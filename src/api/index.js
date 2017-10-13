@@ -1,10 +1,6 @@
 import { v4 } from 'node-uuid';
 import fire from '../firebase';
 
-const db = {
-  haikus: []
-};
-
 export const fetchHaikus = (filter) => 
   fire
     .database()
@@ -14,13 +10,14 @@ export const fetchHaikus = (filter) =>
     .once('value')
     .then(snapshot => snapshot.val());
 
-export const addHaiku = (text) => {
+export const addHaiku = (haiku) => {
   const createdAt = Date.now();
-  const haiku = { id: v4(), text, createdAt };
+  const fbHaiku = { id: v4(), ...haiku, createdAt };
 
   return fire
     .database()
     .ref('haikus')
-    .push(haiku)
-    .then(__ => haiku);
+    .push(fbHaiku)
+    .then(__ => fbHaiku);
 }
+
