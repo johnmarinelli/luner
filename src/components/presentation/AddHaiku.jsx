@@ -12,8 +12,20 @@ let AddHaiku = ({
   addHaiku,
   dispatch
 }) => {
-  const dispatchAddHaiku = (haiku) => 
-    dispatch(addHaiku(haiku));
+  const dispatchAddHaiku = (haiku) => {
+    /*
+     * refactor this 
+     */
+    const expectedSyllableCounts = [5,3,5];
+    const actualSyllableCounts = haiku.lines.map(line => line.syllables);
+    const compareArrays = (a, b) => 
+      a.length === b.length &&
+        a.every((v, i) => v === b[i]);
+
+    if (compareArrays(actualSyllableCounts, expectedSyllableCounts)) {
+      dispatch(addHaiku(haiku));
+    }
+  };
 
   return (
     <div>

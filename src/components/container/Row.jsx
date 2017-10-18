@@ -9,6 +9,10 @@ class Row extends React.Component {
     this.line.focus();
   }
 
+  setFirstChar (c) {
+    this.line.setFirstChar(c);
+  }
+
   constructor () {
     super();
     this.line = null;

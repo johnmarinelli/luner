@@ -6,18 +6,9 @@ import Row from './container/Row';
 
 const syllable = require('syllable');
 
-const Button = (props) => 
-  <button 
-    onClick={props.onClickHandler}>
-    {props.text}
-  </button>;
-
 const Buttons = (props) => 
   <div className="flex-container">
     <AddHaiku />
-    <Button
-      text="inspire me"
-      onClickHandler={props.inspire} />
   </div>
 
 const mapStateToProps = (state) => state.haikuApp.haiku;
@@ -30,22 +21,40 @@ class Create extends React.Component {
     }
   }
 
+  setFirstChar (index, c) {
+    if (index < this.rows.length - 1) {
+      this.rows[index + 1].setFirstChar(c);
+    }
+  }
+
   onLineKeyUp (index, evt) {
     const content = evt.target.value;
     const syllables = syllable(content);
     const maxSyllableCount = +evt.target.getAttribute('maxsyllablecount');
     
     if (syllables <= maxSyllableCount) {
+      /*
+       * focus the next row when 
+       * space or enter key was pressed at max syllable count
+       */
       if (syllables === maxSyllableCount && (evt.keyCode === 32 || evt.keyCode == 13)) {
         this.focusNextInput(index);
       }
-      else {
-        this.props.dispatch(haikuLineKeyUp(content, syllables, index));
-      }
+      this.props.dispatch(haikuLineKeyUp(content, syllables, index));
     }
     else {
+      /*
+       * focus the next row when 
+       * a character key was pressed and the syllable count > maxSyllableCount
+       */
       evt.target.value = this.props.lines[index].content.trim();
       this.focusNextInput(index);
+
+      /*
+       * hackish solution to auto enter the next character.  
+       * does not correctly set syllable count for next row.
+       */
+      this.setFirstChar(index, content.split('').reverse()[0]);
     }
   }
 

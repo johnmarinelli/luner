@@ -8,6 +8,10 @@ class Line extends React.Component {
     this.input.focus();
   }
 
+  setFirstChar (c) {
+    this.input.value = c + this.input.value;
+  }
+
   constructor () {
     super();
     this.input = null;
