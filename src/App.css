@@ -13,6 +13,14 @@ header {
   font-size: 28px;
 }
 
-.lines {
-  flex-direction: column;
+div.top-level-container {
+  width: 50%;
+  margin: auto;
 }
+
+@media (max-width: 768px) {
+  div.top-level-container {
+    width: 100%;
+  }
+}
+
