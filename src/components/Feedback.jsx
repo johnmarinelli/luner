@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { validateSyllables } from '../utilities';
+import { compareArrays, validateSyllables } from '../utilities';
 
 const mapStateToProps = state => ({
   haiku: state.haikuApp.haiku,
@@ -21,6 +21,18 @@ const Feedback = ({
 
     if (validateSyllables(lines, expectedCount)) {
       text = 'You are done!';
+    }
+
+    else {
+      const syllables = lines.map(line => line.syllables);
+      const firstState = { counts: [0, 0, 0], text: 'A Lune is a 5-3-5 haiku.' },
+        secondState = { counts: [5, 0, 0], text: 'Good job!  You\'re almost there.' },
+        thirdState = { counts: [5, 3, 0], text: 'One more line to go.' };
+
+      text = [firstState, secondState, thirdState].reduce((acc, state) => {
+        if (compareArrays(state.counts, syllables)) return state.text;  
+        else return acc;
+      }, firstState.text);
     }
 
     feedback = <div className='feedback'>
