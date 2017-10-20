@@ -4,6 +4,6 @@ const Counter = ({
   count,
   max
 }) => 
-  <label>Syllable count: {count} / {max}</label>;
+  <label>{count} / {max}</label>;
 
 export default Counter;
