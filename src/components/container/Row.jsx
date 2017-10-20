@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Line from './Line';
 import Counter from '../presentation/Counter';
 
+import './Row.css';
+
 class Row extends React.Component {
 
   focus () {
@@ -28,16 +30,16 @@ class Row extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="row-wrapper">
+        <Counter
+          count={syllables}
+          max={maxSyllableCount} />
         <Line 
           ref={line => this.line = line}
           onKeyUp={onLineKeyUp} 
           index={index} 
           lineContent={lineContent}
           maxSyllableCount={maxSyllableCount} />
-        <Counter
-          count={syllables}
-          max={maxSyllableCount} />
       </div>
     );
   }

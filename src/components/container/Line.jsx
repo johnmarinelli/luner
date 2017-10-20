@@ -27,7 +27,7 @@ class Line extends React.Component {
     const autofocus = 0 === index;
 
     return (
-      <div>
+      <div className="line-wrapper">
         <input 
           ref={input => this.input = input}
           type="text"

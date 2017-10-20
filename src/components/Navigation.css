@@ -1,0 +1,13 @@
+button a {
+  text-decoration: none;
+  color: black;
+}
+
+button:hover {
+  color: grey;
+}
+
+button a:hover {
+  text-decoration: none;
+  color: grey;
+}

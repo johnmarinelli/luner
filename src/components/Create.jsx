@@ -1,15 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp } from '../action-creators';
-import AddHaiku from './presentation/AddHaiku';
 import Row from './container/Row';
 
 const syllable = require('syllable');
-
-const Buttons = (props) => 
-  <div className="flex-container">
-    <AddHaiku />
-  </div>
 
 const mapStateToProps = (state) => state.haikuApp.haiku;
 
@@ -37,7 +31,8 @@ class Create extends React.Component {
        * focus the next row when 
        * space or enter key was pressed at max syllable count
        */
-      if (syllables === maxSyllableCount && (evt.keyCode === 32 || evt.keyCode == 13)) {
+      if (syllables === maxSyllableCount 
+           && (evt.keyCode === 32 || evt.keyCode === 13)) {
         this.focusNextInput(index);
       }
       this.props.dispatch(haikuLineKeyUp(content, syllables, index));
@@ -90,8 +85,6 @@ class Create extends React.Component {
           syllables={lines[2].syllables}
           lineContent={lines[2].content}
           maxSyllableCount={5} />
-        <Buttons 
-          inspire={this.inspire} />
       </div>
     );
   }

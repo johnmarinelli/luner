@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getVisibleHaikus, getErrorMessage } from '../../reducers';
-import * as actions from '../../action-creators';
 import Loader from './Loader';
 
 const mapStateToProps = (state, { match }) => {

@@ -5,6 +5,8 @@ import Create from './Create';
 import About from './About';
 import ShowHaikus from './presentation/ShowHaikus';
 
+import './Main.css';
+
 function mapStyles (styles) {
   return {
     opacity: styles.opacity,
@@ -35,7 +37,7 @@ const bounceTransition = {
 };
 
 const Main = () => 
-  <main>
+  <main className="">
     <AnimatedSwitch
         mapStyles={mapStyles}
         atEnter={bounceTransition.atEnter} 

@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import Main from './components/Main.jsx';
-import Header from './components/Header.jsx';
+import Navigation from './components/Navigation.jsx';
 
 const App = () => 
   <div>
-     <Header />
      <Main />
+     <Navigation />
   </div>;
 
 export default App;
