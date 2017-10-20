@@ -6,12 +6,16 @@ import AddHaiku from './presentation/AddHaiku';
 import './Navigation.css';
 import './Flex.css';
 
-const mapStateToProps = (state) => state.router.location;
+const mapStateToProps = state => state.router.location;
 
 const Navigation = ({
   pathname
 }) => {
-  let leftmostNavItem = <button><Link to='/'>Create</Link></button>;
+  let leftmostNavItem = <button>
+    <Link to="/">
+      Create
+    </Link>
+  </button>;
 
   if ('/' === pathname) {
     leftmostNavItem = <AddHaiku />;

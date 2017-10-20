@@ -1,11 +1,6 @@
 .line {
-  text-transform: lowercase;
-}
-
-.line {
-  background-color: #eee;
 }
 
 .line:focus {
-  background-color: white;
+  background-color: yellow;
 }

@@ -3,26 +3,32 @@ import { connect } from 'react-redux';
 import { validateSyllables } from '../utilities';
 
 const mapStateToProps = state => ({
-  haiku: state.haikuApp.haiku
+  haiku: state.haikuApp.haiku,
+  pathname: state.router.location.pathname
 });
 
 const Feedback = ({
-  haiku
+  haiku,
+  pathname
 }) => {
-  const { lines } = haiku;
-  const expectedCount = [5,3,5];
+  let feedback = null;
 
-  let feedback = 'You are not done yet';
+  if ('/' === pathname) {
+    const { lines } = haiku;
+    const expectedCount = [5,3,5];
 
-  if (validateSyllables(lines, expectedCount)) {
-    feedback = 'You are done!';
+    let text = 'You are not done yet';
+
+    if (validateSyllables(lines, expectedCount)) {
+      text = 'You are done!';
+    }
+
+    feedback = <div className='feedback'>
+      {text} 
+    </div>
   }
 
-  return (
-    <div className='feedback'>
-      {feedback} 
-    </div>
-  );
+  return feedback;
 }
 
 export default connect(mapStateToProps, null)(Feedback);
