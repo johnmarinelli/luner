@@ -29,7 +29,7 @@ let AddHaiku = ({
 
   return (
     <div>
-      <button 
+      <button
         onClick={dispatchAddHaiku.bind(null, haiku)}>
         Send
       </button>

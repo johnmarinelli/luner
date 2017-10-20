@@ -10,7 +10,7 @@ const mapStateToProps = (state) => state.router.location;
 const Navigation = ({
   pathname
 }) => {
-  let leftmostNavItem = <button><Link to="/">Create</Link></button>;
+  let leftmostNavItem = <Link to="/">Create</Link>;
 
   if ('/' === pathname) {
     leftmostNavItem = <AddHaiku />;
@@ -21,14 +21,10 @@ const Navigation = ({
       <ul>
         <li>{leftmostNavItem}</li>
         <li>
-          <button>
-            <Link to="/about">About</Link>
-          </button>
+          <Link className="button" to="/about">About</Link>
         </li>
         <li>
-          <button>
-            <Link to="/browse-haikus">Browse</Link>
-          </button>
+          <Link className="button" to="/browse-haikus">Browse</Link>
         </li>
       </ul>
     </div>
