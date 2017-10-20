@@ -4,6 +4,7 @@ import configureStore from './configure-store';
 import Root from './Root';
 import { watchHaikuAddedEvent } from './action-creators';
 
+
 const store = configureStore();
 watchHaikuAddedEvent(store.dispatch);
 

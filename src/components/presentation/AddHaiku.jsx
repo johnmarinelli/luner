@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addHaiku } from '../../action-creators';
 
+import { validateSyllables } from '../../utilities';
+
 const mapStateToProps = state => ({
   haiku: state.haikuApp.haiku,
   addHaiku
@@ -13,27 +15,18 @@ let AddHaiku = ({
   dispatch
 }) => {
   const dispatchAddHaiku = (haiku) => {
-    /*
-     * refactor this 
-     */
-    const expectedSyllableCounts = [5,3,5];
-    const actualSyllableCounts = haiku.lines.map(line => line.syllables);
-    const compareArrays = (a, b) => 
-      a.length === b.length &&
-        a.every((v, i) => v === b[i]);
+    const expectedCounts = [5,3,5];
 
-    if (compareArrays(actualSyllableCounts, expectedSyllableCounts)) {
+    if (validateSyllables(haiku.lines, expectedCounts)) {
       dispatch(addHaiku(haiku));
     }
   };
 
   return (
-    <div>
-      <button 
-        onClick={dispatchAddHaiku.bind(null, haiku)}>
-        Send
-      </button>
-    </div>
+    <button 
+      onClick={dispatchAddHaiku.bind(null, haiku)}>
+      Send
+    </button>
   );
 };
 
