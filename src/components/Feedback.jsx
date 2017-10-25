@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compareArrays, validateSyllables } from '../utilities';
 
+import './Feedback.css';
+
 const mapStateToProps = state => ({
   haiku: state.haikuApp.haiku,
   pathname: state.router.location.pathname
