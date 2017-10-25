@@ -3,7 +3,8 @@ const initialState = {
     { content: '', syllables: 0 },
     { content: '', syllables: 0 },
     { content: '', syllables: 0 },
-  ]
+  ],
+  author: 'anonymous'
 };
 
 const lines = (state, action) => {
@@ -20,11 +21,24 @@ const lines = (state, action) => {
   }
 };
 
+const author = (state, action) => {
+  switch (action.type) {
+    case 'HAIKU_AUTHOR_KEYUP': {
+      return action.author;
+    }
+    default: return state;
+  }
+};
+
 const haikuApp = (state = initialState, action) => {
   switch (action.type) {
     case 'HAIKU_LINE_KEYUP':
       return Object.assign({}, state, {
         lines: lines(state.lines, action)
+      });
+    case 'HAIKU_AUTHOR_KEYUP':
+      return Object.assign({}, state, {
+        author: author(state.author, action)
       });
     default: return state;
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { haikuLineKeyUp } from '../action-creators';
+import { haikuLineKeyUp, haikuAuthorKeyUp } from '../action-creators';
 import Row from './container/Row';
 
 const syllable = require('syllable');
@@ -53,10 +53,16 @@ class Create extends React.Component {
     }
   }
 
+  onAuthorKeyUp (evt) {
+    const author = evt.target.value;
+    this.props.dispatch(haikuAuthorKeyUp(author));
+  }
+
   constructor () {
     super();
     this.rows = new Array(3).fill(null);
     this.focusNextInput = this.focusNextInput.bind(this);
+    this.authorInput = null;
   }
 
   render () {
@@ -85,6 +91,11 @@ class Create extends React.Component {
           syllables={lines[2].syllables}
           lineContent={lines[2].content}
           maxSyllableCount={5} />
+        <input
+          onKeyUp={this.onAuthorKeyUp.bind(this)}
+          maxLength={15}
+          id='author'
+          defaultValue='anonymous' />
       </div>
     );
   }
