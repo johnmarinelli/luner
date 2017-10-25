@@ -1,0 +1,11 @@
+.author-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#author {
+  text-align: right;
+  border: none;
+  padding: 5px;
+  margin: 10px;
+}

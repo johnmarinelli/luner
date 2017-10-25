@@ -30,7 +30,7 @@ class Row extends React.Component {
     } = this.props;
 
     return (
-      <div className="row-wrapper">
+      <div className="form-group row-wrapper">
         <Counter
           count={syllables}
           max={maxSyllableCount} />

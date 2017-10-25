@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from '../action-creators';
 import Row from './container/Row';
 
+import './Create.css';
+
 const syllable = require('syllable');
 
 const mapStateToProps = (state) => state.haikuApp.haiku;
@@ -91,11 +93,16 @@ class Create extends React.Component {
           syllables={lines[2].syllables}
           lineContent={lines[2].content}
           maxSyllableCount={5} />
-        <input
-          onKeyUp={this.onAuthorKeyUp.bind(this)}
-          maxLength={15}
-          id='author'
-          defaultValue='anonymous' />
+        <div className="author-wrapper">
+          <label>
+            -
+          </label>
+          <input
+            onKeyUp={this.onAuthorKeyUp.bind(this)}
+            maxLength={15}
+            id="author"
+            defaultValue="anonymous" />
+        </div>
       </div>
     );
   }

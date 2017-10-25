@@ -27,19 +27,17 @@ class Line extends React.Component {
     const autofocus = 0 === index;
 
     return (
-      <div className="line-wrapper">
-        <input 
-          ref={input => this.input = input}
-          type="text"
-          onKeyUp={onKeyUp}
-          placeholder={'' === lineContent ? 'default value' : ''}
-          defaultValue={lineContent}
-          className="line"
-          maxsyllablecount={maxSyllableCount}
-          maxLength={maxSyllableCount * 10}
-          autoFocus={autofocus}
-          />
-      </div>
+      <input 
+        ref={input => this.input = input}
+        type="text"
+        onKeyUp={onKeyUp}
+        placeholder={'' === lineContent ? 'default value' : ''}
+        defaultValue={lineContent}
+        className="line"
+        maxsyllablecount={maxSyllableCount}
+        maxLength={maxSyllableCount * 10}
+        autoFocus={autofocus}
+        />
     );
   }
 };
