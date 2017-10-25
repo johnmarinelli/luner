@@ -11,11 +11,11 @@ const mapStateToProps = state => state.router.location;
 const Navigation = ({
   pathname
 }) => {
-  let leftmostNavItem = <button>
-    <Link to="/">
+  let leftmostNavItem = <Link to="/">
+    <button type="button">
       Create
-    </Link>
-  </button>;
+    </button>
+  </Link>;
 
   if ('/' === pathname) {
     leftmostNavItem = <AddHaiku />;
@@ -24,12 +24,16 @@ const Navigation = ({
   return (
     <div className='flex-container flex-row'>
       {leftmostNavItem}
-      <button>
-        <Link to='/about'>About</Link>
-      </button>
-      <button>
-        <Link to='/browse-haikus'>Browse</Link>
-      </button>
+      <Link to="/about">
+        <button type="button">
+          About
+        </button>
+      </Link>
+      <Link to="/browse-haikus">
+        <button type="button">
+          Browse
+        </button>
+      </Link>
     </div>
   );
 }
