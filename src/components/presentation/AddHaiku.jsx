@@ -12,13 +12,16 @@ const mapStateToProps = state => ({
 let AddHaiku = ({
   haiku,
   addHaiku,
-  dispatch
+  dispatch,
+  clearInputs
 }) => {
   const dispatchAddHaiku = (haiku) => {
     const expectedCounts = [5,3,5];
 
     if (validateSyllables(haiku.lines, expectedCounts)) {
-      dispatch(addHaiku(haiku));
+      dispatch(addHaiku(haiku)).then(() => 
+        clearInputs()
+      );
     }
   };
 

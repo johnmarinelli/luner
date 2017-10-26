@@ -12,6 +12,10 @@ class Line extends React.Component {
     this.input.value = c + this.input.value;
   }
 
+  clearInput () {
+    this.input.value = '';
+  }
+
   constructor () {
     super();
     this.input = null;

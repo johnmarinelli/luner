@@ -15,6 +15,10 @@ class Row extends React.Component {
     this.line.setFirstChar(c);
   }
 
+  clearInput () {
+    this.line.clearInput();
+  }
+
   constructor () {
     super();
     this.line = null;

@@ -19,6 +19,10 @@ class Create extends React.Component {
     else this.author.focus();
   }
 
+  clearInputs () {
+    this.rows.forEach(row => row.clearInput());
+  }
+
   setFirstChar (index, c) {
     if (index < this.rows.length - 1) {
       this.rows[index + 1].setFirstChar(c);
@@ -66,6 +70,7 @@ class Create extends React.Component {
     super();
     this.rows = new Array(3).fill(null);
     this.focusNextInput = this.focusNextInput.bind(this);
+    this.clearInputs = this.clearInputs.bind(this);
     this.authorInput = null;
   }
 
@@ -109,7 +114,7 @@ class Create extends React.Component {
             defaultValue="anonymous" />
           <span id="author-right-bound"></span>
         </label>
-        <AddHaiku />
+        <AddHaiku clearInputs={this.clearInputs} />
       </div>
     );
   }
