@@ -93,16 +93,19 @@ class Create extends React.Component {
           syllables={lines[2].syllables}
           lineContent={lines[2].content}
           maxSyllableCount={5} />
-        <div className="author-wrapper">
-          <label>
+        <label className="author-wrapper row-wrapper">
+          <span className="label" htmlFor="author">
             -
-          </label>
+          </span>
           <input
             onKeyUp={this.onAuthorKeyUp.bind(this)}
             maxLength={15}
             id="author"
+            htmlname="author"
+            className="line"
             defaultValue="anonymous" />
-        </div>
+          <span id="author-right-bound"></span>
+        </label>
       </div>
     );
   }

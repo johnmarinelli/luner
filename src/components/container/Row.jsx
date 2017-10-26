@@ -30,17 +30,18 @@ class Row extends React.Component {
     } = this.props;
 
     return (
-      <div className="form-group row-wrapper">
-        <Counter
-          count={syllables}
-          max={maxSyllableCount} />
+      <label className=" row-wrapper">
         <Line 
           ref={line => this.line = line}
           onKeyUp={onLineKeyUp} 
           index={index} 
           lineContent={lineContent}
           maxSyllableCount={maxSyllableCount} />
-      </div>
+        <Counter
+          count={syllables}
+          max={maxSyllableCount}
+          inputName={'line' + index}/>
+      </label>
     );
   }
 };

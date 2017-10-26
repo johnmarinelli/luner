@@ -12,3 +12,9 @@
   -webkit-animation: typing 5s steps(15, end),
              blink-caret .5s step-end infinite alternate;
 }
+
+@media (max-width: 768px) {
+  .feedback {
+    font-size: 1.25em;
+  }
+}

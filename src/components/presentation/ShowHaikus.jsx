@@ -13,19 +13,22 @@ const mapStateToProps = (state, { match }) => {
   };
 };
 
+const Haiku = ({
+  haiku
+}) => 
+  <div key={haiku.id}>
+    {haiku.lines.reduce((acc, line) => {
+      return acc + line.content + "\n";
+    }, '')}
+    <span>- {haiku.author || 'anonymous'}</span>
+  </div>
+
 const ShowHaikus = ({
   haikus, 
   errorMessage,
   filter
 }) => {
-  const renderedHaikus = haikus.map(haiku => 
-    <div key={haiku.id}>
-      {haiku.lines.reduce((acc, line) => {
-        return acc + line.content + "\n";
-      }, '')}
-    </div>
-  );
-
+  const renderedHaikus = haikus.map(haiku => <Haiku haiku={haiku} />);
   const loadingAnimation = (renderedHaikus.length < 1)? <Loader /> : '';
 
   return (

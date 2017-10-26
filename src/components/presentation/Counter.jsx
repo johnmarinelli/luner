@@ -2,8 +2,13 @@ import React from 'react';
 
 const Counter = ({
   count,
-  max
+  max,
+  inputName
 }) => 
-  <label>{count} / {max}</label>;
+  <span
+    htmlFor={inputName} 
+    className="label">
+      {count} / {max}
+  </span>;
 
 export default Counter;
