@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from '../action-creators';
 import Row from './container/Row';
+import AddHaiku from './presentation/AddHaiku';
 
 import './Create.css';
 
@@ -15,6 +16,7 @@ class Create extends React.Component {
     if (index < this.rows.length - 1) {
       this.rows[index + 1].focus();
     }
+    else this.author.focus();
   }
 
   setFirstChar (index, c) {
@@ -100,12 +102,14 @@ class Create extends React.Component {
           <input
             onKeyUp={this.onAuthorKeyUp.bind(this)}
             maxLength={15}
+            ref={input => this.author = input}
             id="author"
             htmlname="author"
             className="line"
             defaultValue="anonymous" />
           <span id="author-right-bound"></span>
         </label>
+        <AddHaiku />
       </div>
     );
   }

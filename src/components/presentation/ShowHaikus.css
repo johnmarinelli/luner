@@ -1,0 +1,13 @@
+.haikus {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 2px;
+}
+
+.haikus .flex-item {
+  border: solid thin red;
+  padding: 10px;
+}

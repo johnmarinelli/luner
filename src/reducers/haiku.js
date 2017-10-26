@@ -17,6 +17,8 @@ const lines = (state, action) => {
         ...state.slice(index + 1)
       ];
     }
+    case 'HAIKU_ADD_SUCCESS': 
+      return initialState.lines;
     default: return state;
   }
 };
@@ -32,6 +34,7 @@ const author = (state, action) => {
 
 const haikuApp = (state = initialState, action) => {
   switch (action.type) {
+    case 'HAIKU_ADD_SUCCESS':
     case 'HAIKU_LINE_KEYUP':
       return Object.assign({}, state, {
         lines: lines(state.lines, action)

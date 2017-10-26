@@ -34,8 +34,8 @@
 @media (min-width: 500px) {
   .row-wrapper .label {
     /* margin-right: 1rem; */
-    min-width: 100px;
     border: none;
+    margin: 10px;
   }
 }
 
@@ -47,7 +47,6 @@
 @media (min-width: 500px) {
   .row-wrapper .line {
     flex-grow: 1;
-    max-width: 450px;
     border: none;
     border-bottom: solid thin black;
   }
