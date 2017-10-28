@@ -1,5 +1,6 @@
 import { v4 } from 'node-uuid';
 import fire from '../firebase';
+import { debugEnabled } from './../utilities';
 
 export const fetchHaikus = (filter) => 
   fire
@@ -13,6 +14,11 @@ export const fetchHaikus = (filter) =>
 export const addHaiku = (haiku) => {
   const createdAt = Date.now();
   const fbHaiku = { id: v4(), ...haiku, createdAt };
+
+  if (debugEnabled) {
+    alert('debug enabled');
+    return fbHaiku;
+  }
 
   return fire
     .database()

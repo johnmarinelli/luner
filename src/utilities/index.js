@@ -8,3 +8,5 @@ export const validateSyllables = (lines, expectedCounts) => {
   return compareArrays(actualCounts, expectedCounts)
 };
 
+export const debugEnabled = undefined !== process ? 'development' === process.env.NODE_ENV : false;
+
