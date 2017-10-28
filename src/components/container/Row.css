@@ -51,16 +51,3 @@
     border-bottom: solid thin black;
   }
 }
-
-.author-wrapper {
-  margin-top: 10px;
-}
-
-#author {
-  border: none;
-  background: #eee;
-}
-
-#author-right-bound {
-  flex-grow: 1;
-}

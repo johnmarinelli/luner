@@ -112,7 +112,6 @@ class Create extends React.Component {
             htmlname="author"
             className="line"
             defaultValue="anonymous" />
-          <span id="author-right-bound"></span>
         </label>
         <AddHaiku clearInputs={this.clearInputs} />
       </div>

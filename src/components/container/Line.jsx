@@ -35,7 +35,6 @@ class Line extends React.Component {
         ref={input => this.input = input}
         type="text"
         onKeyUp={onKeyUp}
-        placeholder={'' === lineContent ? 'default value' : ''}
         defaultValue={lineContent}
         className="line"
         maxsyllablecount={maxSyllableCount}

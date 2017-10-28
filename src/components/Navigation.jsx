@@ -11,7 +11,7 @@ const Navigation = ({
   pathname
 }) => {
   return (
-    <div className='flex-container flex-row'>
+    <div className="navigation flex-container">
       <Link to="/">
         <button type="button">
           Create

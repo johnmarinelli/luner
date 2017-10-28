@@ -40,7 +40,7 @@ const createList = (filter) => {
          */
         if (-1 === state.indexOf(action.response.result)) {
           return filter === action.filter ?
-            [...state, action.response.result] :
+            [action.response.result, ...state] :
             state;
         }
         else return state;

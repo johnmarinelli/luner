@@ -1,4 +1,30 @@
 .author-wrapper {
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
+}
+
+#author {
+  border: none;
+  background: #eee;
+}
+
+.navigation a {
+  width: 33%;
+}
+
+.navigation a button {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .navigation {
+    padding-top: 10px;
+    border-top: solid thin rgba(0, 0, 0, 0.32);
+    flex-direction: column;
+  }
+
+  .navigation a {
+    width: 100%;
+  }
 }
