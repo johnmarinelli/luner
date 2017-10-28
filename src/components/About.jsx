@@ -1,9 +1,11 @@
 import React from 'react';
+import Logo from './presentation/Logo';
 
 import './About.css';
 
 const About = () => 
   <div className="about">
+    <Logo />
     <div className="intro">
       <br/>
       <br/>

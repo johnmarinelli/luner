@@ -5,6 +5,7 @@ button {
 button a {
   text-decoration: none;
   color: black;
+  letter-spacing: 0.15em;
 }
 
 button:hover {

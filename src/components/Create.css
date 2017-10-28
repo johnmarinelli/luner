@@ -6,7 +6,8 @@
 
 #author {
   border: none;
-  background: #eee;
+  text-align: right;
+  border-bottom: solid thin #aaa;
 }
 
 .navigation a {

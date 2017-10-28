@@ -1,0 +1,10 @@
+.lines {
+  flex-direction: column;
+  margin: 30px 0px;
+}
+
+.line {
+  letter-spacing: 0.13em;
+  font-style: italic;
+  font-weight: heavy;
+}
