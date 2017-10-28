@@ -6,6 +6,7 @@ const Logo = ({
   <img 
     className="logo" 
     src="/logo.png" 
+    alt="thehaiku.club logo."
     width={width} />;
 
 
