@@ -27,7 +27,7 @@ const Haiku = ({
   haiku
 }) => 
   <div className="flex-item">
-    {haiku.lines.map(line => <HaikuLine line={line.content} />)}
+    {haiku.lines.map((line, idx) => <HaikuLine line={line.content} key={idx} />)}
     <span>- {haiku.author || 'anonymous'}</span>
   </div>
 
