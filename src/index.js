@@ -6,7 +6,7 @@ import { watchHaikuAddedEvent } from './action-creators';
 
 
 const store = configureStore();
-watchHaikuAddedEvent(store.dispatch);
+//watchHaikuAddedEvent(store.dispatch);
 
 ReactDOM.render(
   <Root store={store} />, 

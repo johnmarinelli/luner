@@ -1,7 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getVisibleHaikus, getErrorMessage } from '../../reducers';
+import { haikusIncrementPage, haikusPaginatedSuccess } from '../../action-creators';
+import { getCurrentPage, getVisibleHaikus, getErrorMessage } from '../../reducers';
+import { paginator } from '../../firebase.js';
 import Loader from './Loader';
+import HaikuListItem from './HaikuListItem';
 
 import './ShowHaikus.css';
 
@@ -10,41 +14,66 @@ const mapStateToProps = (state, { match }) => {
 
   return {
     haikus: getVisibleHaikus(state, filter),
+    page: getCurrentPage(state),
     errorMessage: getErrorMessage(state, filter),
     filter
   };
 };
 
-const HaikuLine = ({
-  line
-}) => 
-  <div className="displayed-haiku-line">
-    {line}
-  </div>;
+const mapDispatchToProps = {
+  haikusIncrementPage,
+  haikusPaginatedSuccess
+};
 
+class ShowHaikus extends React.Component {
 
-const Haiku = ({
-  haiku
-}) => 
-  <div className="flex-item">
-    {haiku.lines.map((line, idx) => <HaikuLine line={line.content} key={idx} />)}
-    <span>- {haiku.author || 'anonymous'}</span>
-  </div>
+  constructor () {
+    super();
+    this.fetchHaikus = this.fetchHaikus.bind(this);
+  }
 
-const ShowHaikus = ({
-  haikus, 
-  errorMessage,
-  filter
-}) => {
-  const renderedHaikus = haikus.map(haiku => <Haiku haiku={haiku} key={haiku.id} />);
-  const loadingAnimation = (renderedHaikus.length < 1)? <Loader /> : '';
+  fetchHaikus () {
+    const { page, haikusIncrementPage } = this.props;
+    paginator.goToPage(page + 1);
+    haikusIncrementPage();
+  }
 
-  return (
-    <div className="haikus">
-      {renderedHaikus}
-      {loadingAnimation}
-    </div>
-  );
-}
+  componentDidMount () {
+    const { haikusPaginatedSuccess, filter } = this.props;
+    paginator.on('value', () => 
+      haikusPaginatedSuccess(paginator.collection, filter)
+    );
+    paginator.on('isLastPage', () =>
+      this.showMore.disabled = true
+    );
+  }
 
-export default connect(mapStateToProps, null)(ShowHaikus);
+  render () {
+    const { haikus, errorMessage, filter } = this.props;
+    const renderedHaikus = haikus.map(haiku => 
+      <li key={haiku.id}>
+        <HaikuListItem 
+          haiku={haiku} />
+      </li>
+    );
+    const loadingAnimation = (renderedHaikus.length < 1)? <Loader /> : '';
+
+    return (
+      <div className="haikus">
+        <ul> 
+          {renderedHaikus}
+        </ul>
+        {loadingAnimation}
+        <button ref={btn => this.showMore = btn} onClick={this.fetchHaikus}>Show More</button>
+      </div>
+    );
+  }
+};
+
+ShowHaikus.propTypes = {
+  haikus: PropTypes.array,
+  errorMessage: PropTypes.string,
+  filter: PropTypes.string.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowHaikus);

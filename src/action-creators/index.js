@@ -33,6 +33,19 @@ const haikusFetchFailure = (filter = 'all', error) => ({
   message: error.message || 'Something went wrong.'
 });
 
+export const haikusIncrementPage = () => ({
+  type: 'HAIKUS_INCREMENT_PAGE'
+});
+
+export const haikusPaginatedSuccess = (haikus, filter) => ({
+  type: 'HAIKUS_PAGINATED_SUCCESS',
+  filter,
+  response: normalize(haikus, schema.arrayOfHaikus)
+});
+
+/*
+ * when a new item is added, update state
+ */
 export const watchHaikuAddedEvent = (dispatch) => 
   fire
     .database()

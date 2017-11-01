@@ -45,6 +45,11 @@ const createList = (filter) => {
         }
         else return state;
       }
+      case 'HAIKUS_PAGINATED_SUCCESS': {
+        return filter === action.filter ?
+          [action.response.result, ...state] :
+          state;
+      }
       default: return state;
     }
   };
