@@ -37,6 +37,11 @@ export const haikusIncrementPage = () => ({
   type: 'HAIKUS_INCREMENT_PAGE'
 });
 
+export const haikusLastPageReached = (isLastPageReached) => ({
+  type: 'HAIKUS_LAST_PAGE_REACHED',
+  isLastPageReached
+});
+
 export const haikusPaginatedSuccess = (haikus, filter) => ({
   type: 'HAIKUS_PAGINATED_SUCCESS',
   filter,

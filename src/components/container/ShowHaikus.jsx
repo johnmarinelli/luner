@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { haikusIncrementPage, haikusPaginatedSuccess } from '../../action-creators';
-import { getCurrentPage, getVisibleHaikus, getErrorMessage } from '../../reducers';
+import { haikusIncrementPage, haikusPaginatedSuccess, haikusLastPageReached } from '../../action-creators';
+import { getCurrentPage, getVisibleHaikus, getErrorMessage, getLastPageReached } from '../../reducers';
 import { paginator } from '../../firebase.js';
-import Loader from './Loader';
-import HaikuListItem from './HaikuListItem';
+import Loader from '../presentation/Loader';
+import HaikuListItem from '../presentation/HaikuListItem';
 
 import './ShowHaikus.css';
 
@@ -16,13 +16,15 @@ const mapStateToProps = (state, { match }) => {
     haikus: getVisibleHaikus(state, filter),
     page: getCurrentPage(state),
     errorMessage: getErrorMessage(state, filter),
+    isLastPageReached: getLastPageReached(state),
     filter
   };
 };
 
 const mapDispatchToProps = {
   haikusIncrementPage,
-  haikusPaginatedSuccess
+  haikusPaginatedSuccess,
+  haikusLastPageReached
 };
 
 class ShowHaikus extends React.Component {
@@ -39,17 +41,17 @@ class ShowHaikus extends React.Component {
   }
 
   componentDidMount () {
-    const { haikusPaginatedSuccess, filter } = this.props;
+    const { haikusPaginatedSuccess, haikusLastPageReached, filter } = this.props;
     paginator.on('value', () => 
       haikusPaginatedSuccess(paginator.collection, filter)
     );
     paginator.on('isLastPage', () =>
-      this.showMore.disabled = true
+      haikusLastPageReached(true)
     );
   }
 
   render () {
-    const { haikus, errorMessage, filter } = this.props;
+    const { haikus, errorMessage, filter, isLastPageReached } = this.props;
     const renderedHaikus = haikus.map(haiku => 
       <li key={haiku.id}>
         <HaikuListItem 
@@ -58,13 +60,26 @@ class ShowHaikus extends React.Component {
     );
     const loadingAnimation = (renderedHaikus.length < 1)? <Loader /> : '';
 
+    const showMoreProps = {
+      ref: (btn) => this.showMore = btn,
+      onClick: this.fetchHaikus
+    };
+    isLastPageReached ? showMoreProps.disabled = true : {};
+    const showMore = 
+      <button 
+        {...showMoreProps}>
+        Show More
+      </button>;
+
     return (
       <div className="haikus">
         <ul> 
           {renderedHaikus}
         </ul>
         {loadingAnimation}
-        <button ref={btn => this.showMore = btn} onClick={this.fetchHaikus}>Show More</button>
+        <div className="show-more-wrapper">
+          {showMore}
+        </div>
       </div>
     );
   }

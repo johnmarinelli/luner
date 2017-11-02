@@ -4,7 +4,8 @@ import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
 
 const initialPaginationState = {
-  page: 1
+  page: 1,
+  lastPageReached: false
 };
 
 const page = (state = 1, action) => {
@@ -21,6 +22,11 @@ const pagination = (state = initialPaginationState, action) => {
       return Object.assign({}, state, {
         page: page(state.page, action)
       });
+    case 'HAIKUS_LAST_PAGE_REACHED': {
+      return Object.assign({}, state, {
+        lastPageReached: action.isLastPageReached
+      });
+    }
     default: return state;
   }
 };
@@ -55,3 +61,6 @@ export const getErrorMessage = (state, filter) =>
 
 export const getCurrentPage = (state) =>
   state.haikuApp.haikus.pagination.page;
+
+export const getLastPageReached = (state) =>
+  state.haikuApp.haikus.pagination.lastPageReached;

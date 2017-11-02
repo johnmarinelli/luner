@@ -16,3 +16,11 @@
   -moz-box-shadow: 5px 5px 38px -1px rgba(0,0,0,0.71);
   box-shadow: 5px 5px 38px -1px rgba(0,0,0,0.71);
 }
+
+.show-more-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.show-more button {
+}
