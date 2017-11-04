@@ -36,29 +36,35 @@ class ShowHaikus extends React.Component {
 
   fetchHaikus () {
     const { page, haikusIncrementPage } = this.props;
+
     paginator.goToPage(page + 1);
     haikusIncrementPage();
   }
 
   componentDidMount () {
     const { haikusPaginatedSuccess, haikusLastPageReached, filter } = this.props;
-    paginator.on('value', () => 
-      haikusPaginatedSuccess(paginator.collection, filter)
-    );
-    paginator.on('isLastPage', () =>
-      haikusLastPageReached(true)
-    );
+
+    if (!paginator.initialized) {
+      paginator.on('value', () => 
+        haikusPaginatedSuccess(paginator.collection, filter)
+      );
+      paginator.on('isLastPage', () =>
+        haikusLastPageReached(true)
+      );
+      paginator.initialized = true;
+      this.fetchHaikus();
+    }
   }
 
   render () {
-    const { haikus, errorMessage, filter, isLastPageReached } = this.props;
+    const { haikus, isLastPageReached } = this.props;
     const renderedHaikus = haikus.map(haiku => 
       <li key={haiku.id}>
         <HaikuListItem 
           haiku={haiku} />
       </li>
     );
-    const loadingAnimation = (renderedHaikus.length < 1)? <Loader /> : '';
+    const loadingAnimation = (renderedHaikus.length < 1) ? <Loader /> : '';
 
     const showMoreProps = {
       ref: (btn) => this.showMore = btn,

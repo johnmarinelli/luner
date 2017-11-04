@@ -4,11 +4,11 @@ import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
 
 const initialPaginationState = {
-  page: 1,
+  page: 0,
   lastPageReached: false
 };
 
-const page = (state = 1, action) => {
+const page = (state, action) => {
   switch (action.type) {
     case 'HAIKUS_INCREMENT_PAGE':
       return state + 1;

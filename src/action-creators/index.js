@@ -1,14 +1,7 @@
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
 import * as api from '../api';
-import fire from '../firebase';
 import { getIsFetching } from '../reducers';
-
-const haikuFromFirebase = (haiku) => ({
-  type: 'HAIKU_FROM_FIREBASE',
-  filter: 'all',
-  response: normalize(haiku, schema.haiku)
-});
 
 const haikuAddSuccess = (haiku) => ({
   type: 'HAIKU_ADD_SUCCESS',
@@ -47,17 +40,6 @@ export const haikusPaginatedSuccess = (haikus, filter) => ({
   filter,
   response: normalize(haikus, schema.arrayOfHaikus)
 });
-
-/*
- * when a new item is added, update state
- */
-export const watchHaikuAddedEvent = (dispatch) => 
-  fire
-    .database()
-    .ref('haikus')
-    .on('child_added', (ss) => {
-      dispatch(haikuFromFirebase(ss.val()))
-    });
 
 export const fetchHaikus = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
