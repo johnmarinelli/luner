@@ -13,13 +13,14 @@ let AddHaiku = ({
   haiku,
   addHaiku,
   dispatch,
+  validateInputs,
   clearInputs
 }) => {
   const dispatchAddHaiku = (haiku) => {
     const expectedCounts = [5,3,5];
     let ret = null;
 
-    if (validateSyllables(haiku.lines, expectedCounts)) {
+    if (validateInputs() && validateSyllables(haiku.lines, expectedCounts)) {
       dispatch(addHaiku(haiku))
         .then(() => {
           alert('Haiku posted.  Check out the Browse page to see it!');
@@ -28,7 +29,7 @@ let AddHaiku = ({
         .catch(reason => alert(`Haiku failed to post: ${reason}`));
     }
     else {
-      alert('Haiku fails the 5-3-5 syllablic structure.');
+      alert('Haiku failed to send.  Please check for typos, and make sure each line has 5, 3, and 5 syllables respectively.');
     }
 
     return ret;

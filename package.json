@@ -21,6 +21,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "syllable": "^2.2.0",
+    "typo-js": "^1.0.3",
     "uninstall": "0.0.0"
   },
   "scripts": {

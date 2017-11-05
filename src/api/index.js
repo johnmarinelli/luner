@@ -16,8 +16,8 @@ export const addHaiku = (haiku) => {
   const fbHaiku = { id: v4(), ...haiku, createdAt };
 
   if (debugEnabled) {
-    alert('debug enabled');
-    return fbHaiku;
+    alert('Debug mode enabled - not posting to firebase ^_^b');
+    return Promise.resolve();
   }
 
   return fire

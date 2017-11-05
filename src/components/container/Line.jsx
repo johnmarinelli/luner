@@ -40,6 +40,7 @@ class Line extends React.Component {
         maxsyllablecount={maxSyllableCount}
         maxLength={maxSyllableCount * 10}
         autoFocus={autofocus}
+        spellCheck="true"
         />
     );
   }

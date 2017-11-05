@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from '../action-creators';
 import Row from './container/Row';
 import AddHaiku from './presentation/AddHaiku';
+import 'whatwg-fetch';
 
 import './Create.css';
+
+const Typo = require('typo-js');
+let typo = null;
 
 const syllable = require('syllable');
 
@@ -17,6 +21,27 @@ class Create extends React.Component {
       this.rows[index + 1].focus();
     }
     else this.author.focus();
+  }
+
+  /*
+   * spellcheck
+   * allow for two mispellings
+   * because the typo library will throw false negatives
+   */
+  validateInputs () {
+    let valid = true;
+    if (typo) {
+      const validate = (text) => 
+        text
+          .split(' ')
+          .reduce((acc, word) => 
+            acc + (typo.check(word) ? 0 : 1), 0);
+
+      valid = this.rows.reduce((acc, row) => 
+        acc + validate(row.line.props.lineContent), 0) <= 3;
+    }
+
+    return valid;
   }
 
   clearInputs () {
@@ -59,6 +84,10 @@ class Create extends React.Component {
        */
       this.setFirstChar(index, content.split('').reverse()[0]);
     }
+
+    if (null !== typo) {
+      //content.split(' ').map(word => console.log(typo.check(word)));
+    }
   }
 
   onAuthorKeyUp (evt) {
@@ -71,7 +100,22 @@ class Create extends React.Component {
     this.rows = new Array(3).fill(null);
     this.focusNextInput = this.focusNextInput.bind(this);
     this.clearInputs = this.clearInputs.bind(this);
+    this.validateInputs = this.validateInputs.bind(this);
     this.authorInput = null;
+  }
+
+  componentDidMount () {
+    fetch('/dict/en_US.aff')
+    .then(res => res.text())
+    .then(affText => {
+      fetch('/dict/en_US.dic')
+        .then(res => res.text())
+        .then(dicText => {
+          if (null === typo) {
+            typo = new Typo('en_US', affText, dicText);
+          }
+        });
+    });
   }
 
   render () {
@@ -113,7 +157,9 @@ class Create extends React.Component {
             className="line"
             defaultValue="anonymous" />
         </label>
-        <AddHaiku clearInputs={this.clearInputs} />
+        <AddHaiku 
+          clearInputs={this.clearInputs} 
+          validateInputs={this.validateInputs} />
       </div>
     );
   }
