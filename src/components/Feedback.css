@@ -2,19 +2,8 @@
 @-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
 
 .feedback { 
-  font: bold 2em monospace;
+  font: bold 1.25em monospace;
   color: black;
-  border-right: .1em solid black;
-  white-space: nowrap;
-  overflow: hidden;
   letter-spacing: .15em;
   width: 100%;
-  -webkit-animation: typing 5s steps(15, end),
-             blink-caret .5s step-end infinite alternate;
-}
-
-@media (max-width: 768px) {
-  .feedback {
-    font-size: 1.25em;
-  }
 }
