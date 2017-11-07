@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { haikuLineKeyUp, haikuAuthorKeyUp } from '../action-creators';
-import Row from './container/Row';
-import AddHaiku from './presentation/AddHaiku';
+import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
+import { Row, SendHaiku, Header } from './components/';
 import 'whatwg-fetch';
 
-import './Create.css';
+import './styles.css';
 
 const Typo = require('typo-js');
 let typo = null;
@@ -157,7 +156,7 @@ class Create extends React.Component {
             className="line"
             defaultValue="anonymous" />
         </label>
-        <AddHaiku 
+        <SendHaiku 
           clearInputs={this.clearInputs} 
           validateInputs={this.validateInputs} />
       </div>

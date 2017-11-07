@@ -11,6 +11,7 @@ export const fetchHaikus = (filter) =>
     .once('value')
     .then(snapshot => snapshot.val());
 
+/*
 export const addHaiku = (haiku) => {
   const createdAt = Date.now();
   const fbHaiku = { id: v4(), ...haiku, createdAt };
@@ -26,4 +27,4 @@ export const addHaiku = (haiku) => {
     .push(fbHaiku)
     .then(__ => fbHaiku);
 }
-
+*/

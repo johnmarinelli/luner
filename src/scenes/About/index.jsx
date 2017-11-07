@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './presentation/Logo';
+import Logo from '../../components/Logo/';
 
-import './About.css';
+import './styles.css';
 
 const About = () => 
   <div className="about">

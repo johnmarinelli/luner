@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Line.css';
+
+import './styles.css';
 
 class Line extends React.Component {
 

@@ -48,19 +48,25 @@ const haikuApp = combineReducers({
 
 export default haikuApp;
 
+/*
 export const getVisibleHaikus = (state, filter) => {
   const ids = fromList.getIds(state.haikuApp.haikus.listByFilter[filter]);
   return ids.map(id => fromById.getHaiku(state.haikuApp.haikus.byId, id));
 };
+*/
 
 export const getIsFetching = (state, filter) => 
   fromList.getIsFetching(state.haikuApp.haikus.listByFilter[filter]);
 
+/*
 export const getErrorMessage = (state, filter) => 
   fromList.getErrorMessage(state.haikuApp.haikus.listByFilter[filter]);
+*/
 
+/*
 export const getCurrentPage = (state) =>
   state.haikuApp.haikus.pagination.page;
+*/
 
 export const getLastPageReached = (state) =>
   state.haikuApp.haikus.pagination.lastPageReached;

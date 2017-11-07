@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Line from './Line';
-import Counter from '../presentation/Counter';
+import Line from './components/Line/';
+import Counter from './components/Counter/';
 
-import './Row.css';
+import './styles.css';
 
 class Row extends React.Component {
 

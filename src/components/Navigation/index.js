@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './Navigation.css';
-import './Flex.css';
+import './styles.css';
 
 const mapStateToProps = state => state.router.location;
 

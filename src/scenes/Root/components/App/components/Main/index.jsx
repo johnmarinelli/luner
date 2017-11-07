@@ -1,11 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import Create from './Create';
-import About from './About';
-import ShowHaikus from './container/ShowHaikus';
 
-import './Main.css';
+import { Home, Haikus, About } from '../../../../../index';
+
+import './styles.css';
 
 function mapStyles (styles) {
   return {
@@ -46,13 +45,13 @@ const Main = () =>
       <Route 
         exact 
         path="/" 
-        component={Create} />
+        component={Home} />
       <Route 
         path="/about" 
         component={About} />
       <Route 
         path="/browse-haikus/:filter?" 
-        component={ShowHaikus} />
+        component={Haikus} />
     </AnimatedSwitch>
   </main>
 

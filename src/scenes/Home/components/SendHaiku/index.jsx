@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addHaiku } from '../../action-creators';
+import { addHaiku } from './actions.js';
 
-import { validateSyllables } from '../../utilities';
+import { validateSyllables } from './services.js';
 
 const mapStateToProps = state => ({
   haiku: state.haikuApp.haiku,

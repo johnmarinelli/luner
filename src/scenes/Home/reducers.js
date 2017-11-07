@@ -1,4 +1,4 @@
-/*
+
 const initialState = {
   lines: [
     { content: '', syllables: 0 },
@@ -49,4 +49,3 @@ const haikuApp = (state = initialState, action) => {
 };
 
 export default haikuApp;
-*/

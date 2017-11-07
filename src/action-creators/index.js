@@ -3,11 +3,13 @@ import * as schema from '../api/schema';
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
+/*
 const haikuAddSuccess = (haiku) => ({
   type: 'HAIKU_ADD_SUCCESS',
   filter: 'all',
   response: normalize(haiku, schema.haiku)
 });
+*/
 
 const haikusFetchRequest = (filter = 'all') => ({
   type: 'HAIKUS_FETCH_REQUEST',
@@ -26,6 +28,7 @@ const haikusFetchFailure = (filter = 'all', error) => ({
   message: error.message || 'Something went wrong.'
 });
 
+/*
 export const haikusIncrementPage = () => ({
   type: 'HAIKUS_INCREMENT_PAGE'
 });
@@ -40,6 +43,7 @@ export const haikusPaginatedSuccess = (haikus, filter) => ({
   filter,
   response: normalize(haikus, schema.arrayOfHaikus)
 });
+*/
 
 export const fetchHaikus = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
@@ -54,23 +58,30 @@ export const fetchHaikus = (filter) => (dispatch, getState) => {
       error => dispatch(haikusFetchFailure(filter, error)));
 };
 
+/*
 export const addHaiku = (haiku) => (dispatch) => 
   api
     .addHaiku(haiku)
     .then(response => 
       dispatch(haikuAddSuccess(response)));
+*/
 
 /*
  * fired whenever user keyUp's in haiku form
  */
+
+/*
 export const haikuLineKeyUp = (content, syllables, index) => ({
   type: 'HAIKU_LINE_KEYUP',
   content,
   syllables,
   index
 });
+*/
 
+/*
 export const haikuAuthorKeyUp = (author) => ({
   type: 'HAIKU_AUTHOR_KEYUP',
   author
 });
+*/

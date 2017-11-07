@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { haikusIncrementPage, haikusPaginatedSuccess, haikusLastPageReached } from '../../action-creators';
-import { getCurrentPage, getVisibleHaikus, getErrorMessage, getLastPageReached } from '../../reducers';
+import { haikusIncrementPage, haikusPaginatedSuccess, haikusLastPageReached } from './actions.js';
+import { getCurrentPage, getVisibleHaikus, getErrorMessage, getLastPageReached } from './reducers.js';
 import { paginator } from '../../firebase.js';
 import Loader from '../presentation/Loader';
 import HaikuListItem from '../presentation/HaikuListItem';
 
-import './ShowHaikus.css';
+import './styles.css';
 
 const mapStateToProps = (state, { match }) => {
   const filter = match.params.filter || 'all';
@@ -27,7 +27,7 @@ const mapDispatchToProps = {
   haikusLastPageReached
 };
 
-class ShowHaikus extends React.Component {
+class Haikus extends React.Component {
 
   constructor () {
     super();
@@ -91,10 +91,10 @@ class ShowHaikus extends React.Component {
   }
 };
 
-ShowHaikus.propTypes = {
+Haikus.propTypes = {
   haikus: PropTypes.array,
   errorMessage: PropTypes.string,
   filter: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowHaikus);
+export default connect(mapStateToProps, mapDispatchToProps)(Haikus);
