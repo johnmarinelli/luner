@@ -4,16 +4,14 @@ import pagination from './services/pagination/reducers';
 import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
 
+/*
+ * returns array of haikus sorted by createdAt
+ */
 const getVisibleHaikus = (state, filter) => {
   const ids = fromList.getIds(state.rootReducer.haikus.listByFilter[filter]);
   return ids.map(id => 
     fromById.getHaiku(state.rootReducer.haikus.byId, id)
-  ).sort((a, b) => {
-    console.log('sorting');
-    console.log(a);
-    console.log(b);
-    return b.createdAt - a.createdAt;
-  });
+  ).sort((a, b) => b.createdAt - a.createdAt);
 };
 
 const getErrorMessage = (state, filter) => 
