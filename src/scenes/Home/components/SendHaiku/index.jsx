@@ -5,7 +5,7 @@ import { addHaiku } from './actions.js';
 import { validateSyllables } from './services.js';
 
 const mapStateToProps = state => ({
-  haiku: state.haikuApp.haiku,
+  haiku: state.rootReducer.createHaiku,
   addHaiku
 });
 

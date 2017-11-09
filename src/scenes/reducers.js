@@ -1,3 +1,3 @@
-import haikuApp from './Home/reducers';
+import createHaiku from './Home/reducers';
 
-export { haikuApp };
+export { createHaiku };

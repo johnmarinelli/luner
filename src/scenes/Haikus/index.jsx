@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { haikusIncrementPage, haikusPaginatedSuccess, haikusLastPageReached } from './actions.js';
-import { getCurrentPage, getVisibleHaikus, getErrorMessage, getLastPageReached } from './reducers.js';
-import { paginator } from '../../firebase.js';
-import Loader from '../presentation/Loader';
-import HaikuListItem from '../presentation/HaikuListItem';
+import { getVisibleHaikus, getErrorMessage } from './reducers.js';
+import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
+import { paginator } from '../../services/firebase.js';
+import Loader from '../../components/Loader/';
+import { HaikuListItem } from './components';
 
 import './styles.css';
 

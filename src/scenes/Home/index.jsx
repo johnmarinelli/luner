@@ -11,9 +11,9 @@ let typo = null;
 
 const syllable = require('syllable');
 
-const mapStateToProps = (state) => state.haikuApp.haiku;
+const mapStateToProps = (state) => state.rootReducer.createHaiku;
 
-class Create extends React.Component {
+class Home extends React.Component {
 
   focusNextInput (index) {
     if (index < this.rows.length - 1) {
@@ -82,10 +82,6 @@ class Create extends React.Component {
        * does not correctly set syllable count for next row.
        */
       this.setFirstChar(index, content.split('').reverse()[0]);
-    }
-
-    if (null !== typo) {
-      //content.split(' ').map(word => console.log(typo.check(word)));
     }
   }
 
@@ -164,4 +160,4 @@ class Create extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, null)(Create);
+export default connect(mapStateToProps, null)(Home);

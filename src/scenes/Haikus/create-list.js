@@ -1,28 +1,6 @@
 import { combineReducers } from 'redux';
-
-/*
- * jm 12/10/17
- * App state shape:
- * 
- * {
- *  ...
- *  haikuApp: {
- *    haiku: { ... },
- *    haikus: {
- *      byId: { ... },
- *      listByFilter: {
- *        all: {
- *          errorMessage,
- *          ids,
- *          isFetching
- *        }
- *      }
- *    }
- *  },
- *  ...
- *
- * }
- *
+ 
+ /*
  * this file controls the slice of state starting at `listByFilter`.
  */
 
@@ -47,7 +25,7 @@ const createList = (filter) => {
       }
       case 'HAIKUS_PAGINATED_SUCCESS': {
         return filter === action.filter ?
-          [action.response.result, ...state] :
+          [...state, ...action.response.result] : 
           state;
       }
       default: return state;

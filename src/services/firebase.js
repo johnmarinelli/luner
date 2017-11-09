@@ -16,7 +16,7 @@ var config = {
 };
 let fire = firebase.initializeApp(config);
 const paginationOpts = {
-  pageSize: 1,
+  pageSize: 3,
   finite: true
 };
 

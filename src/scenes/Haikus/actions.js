@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr';
+import * as schema from '../services/schema.js';
 
 const haikusIncrementPage = () => ({
   type: 'HAIKUS_INCREMENT_PAGE'

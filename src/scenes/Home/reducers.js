@@ -33,7 +33,7 @@ const author = (state, action) => {
   }
 };
 
-const haikuApp = (state = initialState, action) => {
+const createHaiku = (state = initialState, action) => {
   switch (action.type) {
     case 'HAIKU_ADD_SUCCESS':
     case 'HAIKU_LINE_KEYUP':
@@ -48,4 +48,4 @@ const haikuApp = (state = initialState, action) => {
   }
 };
 
-export default haikuApp;
+export default createHaiku;

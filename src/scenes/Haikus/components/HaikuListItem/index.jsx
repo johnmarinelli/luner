@@ -1,6 +1,5 @@
 import React from 'react';
-import HaikuLine from './HaikuLine';
-import ListItem from './ListItem';
+import { HaikuLine, ListItem } from './components';
 
 const HaikuListItem = ({
   haiku
