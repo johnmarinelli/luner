@@ -14,6 +14,14 @@ then
 
   # split vertically (-)
   tmux split-window -v
+
+  tmux select-pane -t 0
+
+  tmux split-window -h
+
+  tmux send-keys 'npm run test' C-m
+
+  tmux select-pane -t 2
 fi
 tmux attach -t ${SESSION_NAME}
 
