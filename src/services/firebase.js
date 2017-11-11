@@ -5,6 +5,10 @@ require('firebase-paginator');
 
 let FirebasePaginator = window.FirebasePaginator;
 
+if ('test' === process.env.NODE_ENV) {
+  FirebasePaginator = function () {};
+}
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyBJE6swPr3prWw04uTM-sdV_TUAfIlQSHg",

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Loader from './'; 
+import Navigation from './'; 
 
-const wrapper = shallow(<Loader />);
+const wrapper = shallow(<Navigation />);
 
-describe('(Component) Loader', () => {
+describe('(Component) Navigation', () => {
   it('renders successfully', () => {
     expect(wrapper.length).toBe(1);
   });

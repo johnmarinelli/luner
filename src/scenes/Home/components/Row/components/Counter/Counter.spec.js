@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Loader from './'; 
+import Counter from './'; 
 
-const wrapper = shallow(<Loader />);
+const wrapper = shallow(<Counter />);
 
-describe('(Component) Loader', () => {
+describe('(Component) Counter', () => {
   it('renders successfully', () => {
     expect(wrapper.length).toBe(1);
   });

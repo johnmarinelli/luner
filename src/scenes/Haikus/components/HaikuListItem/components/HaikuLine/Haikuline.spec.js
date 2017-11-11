@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Loader from './'; 
+import HaikuLine from './'; 
 
-const wrapper = shallow(<Loader />);
+const wrapper = shallow(<HaikuLine />);
 
-describe('(Component) Loader', () => {
+describe('(Component) HaikuLine', () => {
   it('renders successfully', () => {
     expect(wrapper.length).toBe(1);
   });

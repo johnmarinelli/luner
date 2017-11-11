@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
 import { Row, SendHaiku, Header } from './components/';
+import { spellCheckLines } from './services';
 import 'whatwg-fetch';
 
 import './styles.css';
@@ -22,25 +23,9 @@ class Home extends React.Component {
     else this.author.focus();
   }
 
-  /*
-   * spellcheck
-   * allow for two mispellings
-   * because the typo library will throw false negatives
-   */
   validateInputs () {
-    let valid = true;
-    if (typo) {
-      const validate = (text) => 
-        text
-          .split(' ')
-          .reduce((acc, word) => 
-            acc + (typo.check(word) ? 0 : 1), 0);
-
-      valid = this.rows.reduce((acc, row) => 
-        acc + validate(row.line.props.lineContent), 0) <= 3;
-    }
-
-    return valid;
+    const lines = this.rows.map(row => row.line.props.lineContent);
+    return spellCheckLines(typo, lines);
   }
 
   clearInputs () {
@@ -118,6 +103,7 @@ class Home extends React.Component {
 
     return (
       <div className="lines flex-container">
+        <Header />
         <Row 
           ref={row => this.rows[0] = row}
           onLineKeyUp={this.onLineKeyUp.bind(this, 0)}
