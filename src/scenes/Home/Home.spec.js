@@ -1,20 +1,41 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Home from './'; 
-
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import TestUtils from 'react-test-utils';
+import thunk from 'redux-thunk';
 
-let mockStore = configureStore();
-let store, rootReducer, connectedApp;
+import Home from './';
+import { initialState } from './reducers';
+
+import { setupIntegrationTests } from './test-utils';
 
 /*
  * refer to http://engineering.pivotal.io/post/tdding-react-and-redux/
  * when testing components that use redux store
  */
 describe('(Component) Home', () => {
+
+  let mockStore, store, wrapper;
+
+  beforeEach(() => {
+    const state = {
+      rootReducer: {
+        createHaiku: Object.assign({}, initialState)
+      }
+    };
+
+    const middlewares = [thunk];
+    mockStore = configureStore(middlewares);
+    store = mockStore(state);
+
+    wrapper = mount(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
+  });
+
   it('renders successfully', () => {
-    expect(true).toBe(true);
+    expect(wrapper.length).toBe(1);
   });
 });
