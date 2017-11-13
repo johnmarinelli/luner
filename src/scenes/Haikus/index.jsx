@@ -88,8 +88,7 @@ class ConnectedHaikus extends React.Component {
 
 Haikus.propTypes = {
   haikus: PropTypes.array,
-  errorMessage: PropTypes.string,
-  filter: PropTypes.string.isRequired
+  errorMessage: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConnectedHaikus);

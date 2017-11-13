@@ -1,9 +1,9 @@
 import Header from './Header/';
 import Row from './Row/';
-import SendHaiku from './SendHaiku/';
+import AddHaiku from './AddHaiku/';
 
 export {
   Header,
   Row,
-  SendHaiku
+  AddHaiku
 };

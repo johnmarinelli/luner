@@ -1,4 +1,5 @@
 import { schema } from 'normalizr';
+import fetchDictionaries from './fetch-dictionaries';
 
 /*
  * normalizr schema
@@ -34,5 +35,6 @@ const spellCheckLines = (typo, lineContents) => {
 export {
   haiku,
   arrayOfHaikus,
-  spellCheckLines
+  spellCheckLines,
+  fetchDictionaries
 };
