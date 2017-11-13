@@ -1,14 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
-
-const mapStateToProps = state => state.router.location;
-
-const Navigation = ({
-  pathname
-}) => {
+const Navigation = () => {
   return (
     <div className="navigation flex-container">
       <Link to="/">
@@ -30,4 +23,4 @@ const Navigation = ({
   );
 }
 
-export default connect(mapStateToProps, null)(Navigation);
+export default Navigation;

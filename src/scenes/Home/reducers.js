@@ -1,4 +1,3 @@
-
 const initialState = {
   lines: [
     { content: '', syllables: 0 },
@@ -46,6 +45,10 @@ const createHaiku = (state = initialState, action) => {
       });
     default: return state;
   }
+};
+
+export {
+  initialState
 };
 
 export default createHaiku;

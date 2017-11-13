@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
-import { Row, SendHaiku, Header } from './components/';
-import 'whatwg-fetch';
+import { Row, AddHaiku, Header } from './components/';
+import { fetchDictionaries, spellCheckLines } from './services';
 
 import './styles.css';
 
-const Typo = require('typo-js');
 let typo = null;
 
 const syllable = require('syllable');
 
-const mapStateToProps = (state) => state.rootReducer.createHaiku;
+const mapStateToProps = (state) => {
+  return state.rootReducer.createHaiku;
+}
 
 class Home extends React.Component {
 
@@ -22,25 +23,9 @@ class Home extends React.Component {
     else this.author.focus();
   }
 
-  /*
-   * spellcheck
-   * allow for two mispellings
-   * because the typo library will throw false negatives
-   */
   validateInputs () {
-    let valid = true;
-    if (typo) {
-      const validate = (text) => 
-        text
-          .split(' ')
-          .reduce((acc, word) => 
-            acc + (typo.check(word) ? 0 : 1), 0);
-
-      valid = this.rows.reduce((acc, row) => 
-        acc + validate(row.line.props.lineContent), 0) <= 3;
-    }
-
-    return valid;
+    const lines = this.rows.map(row => row.line.props.lineContent);
+    return spellCheckLines(typo, lines);
   }
 
   clearInputs () {
@@ -100,17 +85,9 @@ class Home extends React.Component {
   }
 
   componentDidMount () {
-    fetch('/dict/en_US.aff')
-    .then(res => res.text())
-    .then(affText => {
-      fetch('/dict/en_US.dic')
-        .then(res => res.text())
-        .then(dicText => {
-          if (null === typo) {
-            typo = new Typo('en_US', affText, dicText);
-          }
-        });
-    });
+    if (null === typo) {
+      fetchDictionaries().then(t => typo = t);
+    }
   }
 
   render () {
@@ -118,6 +95,7 @@ class Home extends React.Component {
 
     return (
       <div className="lines flex-container">
+        <Header />
         <Row 
           ref={row => this.rows[0] = row}
           onLineKeyUp={this.onLineKeyUp.bind(this, 0)}
@@ -152,7 +130,7 @@ class Home extends React.Component {
             className="line"
             defaultValue="anonymous" />
         </label>
-        <SendHaiku 
+        <AddHaiku 
           clearInputs={this.clearInputs} 
           validateInputs={this.validateInputs} />
       </div>

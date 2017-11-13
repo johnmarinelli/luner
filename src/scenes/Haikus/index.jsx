@@ -7,6 +7,7 @@ import { getCurrentPage, getLastPageReached } from './services/pagination/reduce
 import { paginator } from '../../services/firebase.js';
 import Loader from '../../components/Loader/';
 import { HaikuListItem } from './components';
+import Haikus from './Haikus';
 
 import './styles.css';
 
@@ -28,7 +29,7 @@ const mapDispatchToProps = {
   haikusLastPageReached
 };
 
-class Haikus extends React.Component {
+class ConnectedHaikus extends React.Component {
 
   constructor () {
     super();
@@ -60,10 +61,7 @@ class Haikus extends React.Component {
   render () {
     const { haikus, isLastPageReached } = this.props;
     const renderedHaikus = haikus.map(haiku => 
-      <li key={haiku.id}>
-        <HaikuListItem 
-          haiku={haiku} />
-      </li>
+      <HaikuListItem haiku={haiku} />
     );
     const loadingAnimation = (renderedHaikus.length < 1) ? <Loader /> : '';
 
@@ -78,24 +76,19 @@ class Haikus extends React.Component {
         Show More
       </button>;
 
-    return (
-      <div className="haikus">
-        <ul> 
-          {renderedHaikus}
-        </ul>
-        {loadingAnimation}
-        <div className="show-more-wrapper">
-          {showMore}
-        </div>
-      </div>
-    );
+    const haikusProps = { 
+      renderedHaikus, 
+      loadingAnimation, 
+      showMore 
+    };
+
+    return <Haikus {...haikusProps} />;
   }
 };
 
 Haikus.propTypes = {
   haikus: PropTypes.array,
-  errorMessage: PropTypes.string,
-  filter: PropTypes.string.isRequired
+  errorMessage: PropTypes.string
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Haikus);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedHaikus);
