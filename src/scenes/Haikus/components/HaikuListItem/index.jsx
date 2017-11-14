@@ -5,7 +5,7 @@ import { HaikuLine, ListItem } from './components';
 const HaikuListItem = ({
   haiku
 }) => 
-  <ListItem key={haiku.id}>
+  <ListItem>
     {haiku.lines.map((line, idx) => 
       <HaikuLine
         line={line.content} 

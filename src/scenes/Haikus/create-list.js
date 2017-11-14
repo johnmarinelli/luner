@@ -8,21 +8,6 @@ const createList = (filter) => {
 
   const ids = (state = [], action) => {
     switch (action.type) {
-      case 'HAIKUS_FETCH_SUCCESS': 
-        return filter === action.filter ?
-          action.response.result : 
-          state;
-      case 'HAIKU_FROM_FIREBASE': {
-        /*
-         * if id is not already in state
-         */
-        if (-1 === state.indexOf(action.response.result)) {
-          return filter === action.filter ?
-            [action.response.result, ...state] :
-            state;
-        }
-        else return state;
-      }
       case 'HAIKUS_PAGINATED_SUCCESS': {
         return filter === action.filter ?
           [...state, ...action.response.result] : 

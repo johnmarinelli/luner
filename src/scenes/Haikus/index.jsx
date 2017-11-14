@@ -47,8 +47,10 @@ class ConnectedHaikus extends React.Component {
     const { haikusPaginatedSuccess, haikusLastPageReached, filter } = this.props;
 
     if (!paginator.initialized) {
-      paginator.on('value', () => 
-        haikusPaginatedSuccess(paginator.collection, filter)
+      paginator.reset();
+      paginator.on('value', () => {
+        return haikusPaginatedSuccess(paginator.collection, filter)
+      }
       );
       paginator.on('isLastPage', () =>
         haikusLastPageReached(true)
@@ -61,7 +63,7 @@ class ConnectedHaikus extends React.Component {
   render () {
     const { haikus, isLastPageReached } = this.props;
     const renderedHaikus = haikus.map(haiku => 
-      <HaikuListItem haiku={haiku} />
+      <HaikuListItem key={haiku.id} haiku={haiku} />
     );
     const loadingAnimation = (renderedHaikus.length < 1) ? <Loader /> : '';
 
@@ -83,6 +85,14 @@ class ConnectedHaikus extends React.Component {
     };
 
     return <Haikus {...haikusProps} />;
+  }
+
+  componentWillUnmount () {
+    if (paginator.initialized) {
+      paginator.off('value');
+      paginator.off('isLastPage');
+      paginator.initialized = false;
+    }
   }
 };
 
