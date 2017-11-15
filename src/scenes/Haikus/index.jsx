@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { haikusIncrementPage, haikusPaginatedSuccess, haikusLastPageReached } from './actions.js';
-import { getVisibleHaikus, getErrorMessage } from './reducers.js';
+import { 
+  haikusIncrementPage, 
+  haikusPaginatedSuccess, 
+  haikusLastPageReached, 
+  upvoteHaiku 
+} from './actions.js';
+import { getVisibleHaikus } from './reducers.js';
 import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
 import { paginator } from '../../services/firebase.js';
 import Loader from '../../components/Loader/';
@@ -17,7 +22,6 @@ const mapStateToProps = (state, { match }) => {
   return {
     haikus: getVisibleHaikus(state, filter),
     page: getCurrentPage(state),
-    errorMessage: getErrorMessage(state, filter),
     isLastPageReached: getLastPageReached(state),
     filter
   };
@@ -26,7 +30,8 @@ const mapStateToProps = (state, { match }) => {
 const mapDispatchToProps = {
   haikusIncrementPage,
   haikusPaginatedSuccess,
-  haikusLastPageReached
+  haikusLastPageReached,
+  upvoteHaiku
 };
 
 class ConnectedHaikus extends React.Component {
@@ -44,7 +49,11 @@ class ConnectedHaikus extends React.Component {
   }
 
   componentDidMount () {
-    const { haikusPaginatedSuccess, haikusLastPageReached, filter } = this.props;
+    const { 
+      haikusPaginatedSuccess, 
+      haikusLastPageReached, 
+      filter 
+    } = this.props;
 
     if (!paginator.initialized) {
       paginator.reset();
@@ -60,10 +69,22 @@ class ConnectedHaikus extends React.Component {
     }
   }
 
+  sendUpvote (haiku) {
+    const { upvoteHaiku } = this.props;
+    upvoteHaiku(haiku);
+  }
+
   render () {
-    const { haikus, isLastPageReached } = this.props;
+    const { 
+      haikus, 
+      isLastPageReached
+    } = this.props;
+
     const renderedHaikus = haikus.map(haiku => 
-      <HaikuListItem key={haiku.id} haiku={haiku} />
+      <HaikuListItem 
+        key={haiku.id} 
+        sendUpvote={this.sendUpvote.bind(this, haiku)}
+        haiku={haiku} />
     );
     const loadingAnimation = (renderedHaikus.length < 1) ? <Loader /> : '';
 
@@ -71,7 +92,9 @@ class ConnectedHaikus extends React.Component {
       ref: (btn) => this.showMore = btn,
       onClick: this.fetchHaikus
     };
-    isLastPageReached ? showMoreProps.disabled = true : {};
+
+    showMoreProps.disabled = isLastPageReached;
+
     const showMore = 
       <button 
         {...showMoreProps}>

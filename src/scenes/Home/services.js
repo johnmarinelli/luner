@@ -1,15 +1,5 @@
-import { schema } from 'normalizr';
 import fetchDictionaries from './fetch-dictionaries';
-
-/*
- * normalizr schema
- */
-const haiku = new schema.Entity('haikus');
-const arrayOfHaikus = new schema.Array(haiku);
-
-/*
- * input validation
- */
+import { haiku, arrayOfHaikus } from '../../services';
 
 /*
  * spellcheck
