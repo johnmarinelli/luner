@@ -22,7 +22,8 @@ import haikus from '../scenes/Haikus/reducers';
  *      pagination: {
  *        page,
  *        lastPageReached
- *      }
+ *      },
+ *      upvotesLeft: 3
  *    }
  *  },
  *  ...

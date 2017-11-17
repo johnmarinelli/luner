@@ -3,13 +3,12 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import sinon from 'sinon';
 
 import Home from './';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
 import createHaiku, { initialState } from './reducers';
 
-import { setupIntegrationTests } from './test-utils';
+import { setupIntegrationTests } from '../test-utils';
 
 describe('(Component) Home', () => {
   let wrapper, store;
@@ -63,6 +62,30 @@ describe('(Redux Store) Home', () => {
     };
     expect(actions).toEqual([expectedPayload]);
   });
+});
+
+describe('(Reducers) Home', () => {
+  it('should return the initial state', () => {
+    expect(createHaiku(undefined, {}))
+      .toEqual(initialState);
+  });
+
+  it('should handle HAIKU_LINE_KEYUP', () => {
+    expect(
+      createHaiku(initialState, haikuLineKeyUp('a', 1, 0)).lines[0].content
+    ).toEqual(
+      'a'
+    );
+  });
+
+  it('should handle HAIKU_AUTHOR_KEYUP', () => {
+    expect(
+      createHaiku(initialState, haikuAuthorKeyUp('john')).author
+    ).toEqual(
+      'john'
+    );
+  });
+
 });
 
 describe('(Integration) Home', () => {

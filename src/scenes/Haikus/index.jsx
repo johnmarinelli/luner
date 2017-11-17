@@ -9,6 +9,7 @@ import {
 } from './actions.js';
 import { getVisibleHaikus } from './reducers.js';
 import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
+import { getUpvotesRemaining } from './services/upvotes/reducers.js'; 
 import { paginator } from '../../services/firebase.js';
 import Loader from '../../components/Loader/';
 import { HaikuListItem } from './components';
@@ -23,6 +24,7 @@ const mapStateToProps = (state, { match }) => {
     haikus: getVisibleHaikus(state, filter),
     page: getCurrentPage(state),
     isLastPageReached: getLastPageReached(state),
+    upvotesRemaining: getUpvotesRemaining(state),
     filter
   };
 };
@@ -70,8 +72,11 @@ class ConnectedHaikus extends React.Component {
   }
 
   sendUpvote (haiku) {
-    const { upvoteHaiku } = this.props;
-    upvoteHaiku(haiku);
+    const { upvotesRemaining, upvoteHaiku } = this.props;
+
+    upvotesRemaining > 0 ? 
+      upvoteHaiku(haiku) : 
+      alert('You have used all your upvotes for today.');
   }
 
   render () {

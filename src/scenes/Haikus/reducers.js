@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import pagination from './services/pagination/reducers';
+import upvotes from './services/upvotes/reducers';
 import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
 import { unique } from '../services/utils';
@@ -27,12 +28,13 @@ const listByFilter = combineReducers({
 const haikus = combineReducers({
   byId,
   listByFilter,
-  pagination
+  pagination,
+  upvotes
 });
 
 export {
   getVisibleHaikus,
-  getErrorMessage,
+  getErrorMessage
 };
 
 export default haikus;

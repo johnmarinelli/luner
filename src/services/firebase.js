@@ -1,34 +1,56 @@
 import firebase from 'firebase';
 import debugEnabled from './debug-enabled';
+import prodConfig from './firebase-config';
 
 require('firebase-paginator');
 
 let FirebasePaginator = window.FirebasePaginator;
-
-if ('test' === process.env.NODE_ENV) {
-  FirebasePaginator = function () {};
-}
+let config;
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBJE6swPr3prWw04uTM-sdV_TUAfIlQSHg",
-  authDomain: "haikute-1.firebaseapp.com",
-  databaseURL: "https://haikute-1.firebaseio.com",
-  projectId: "haikute-1",
-  storageBucket: "haikute-1.appspot.com",
-  messagingSenderId: "672843879123"
-};
+if ('test' === process.env.NODE_ENV) {
+  config = {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
+  };
+}
+else {
+  config = prodConfig;
+}
+
 let fire = firebase.initializeApp(config);
 const paginationOpts = {
-  pageSize: 3,
+  pageSize: 10,
   finite: true
 };
 
-export let paginator = new FirebasePaginator(firebase.database().ref('haikus'), paginationOpts);
+let paginator;
+
+if ('test' === process.env.NODE_ENV) {
+  /*
+   * mock paginator for testing
+   */
+  paginator = {
+    reset: jest.fn(),
+    goToPage: jest.fn(),
+    on: jest.fn(),
+    off: jest.fn()
+  };
+}
+else {
+  paginator = new FirebasePaginator(firebase.database().ref('haikus'), paginationOpts);
+}
 
 if (debugEnabled) {
   paginator.listen((eventName, payload) => 
     console.log(`Fired ${eventName} with the following payload: `, payload));
 }
 
+export { 
+  paginator
+};
 export default fire;

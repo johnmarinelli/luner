@@ -24,4 +24,4 @@ public/dictionaries/*
 firebase.json
 .firebaserc
 database.rules.json
-src/firebase.js
+src/services/firebase-config.js

@@ -6,6 +6,7 @@
     "firebase": "^4.5.0",
     "firebase-paginator": "^1.1.1",
     "history": "^4.7.2",
+    "lodash": "^4.17.4",
     "node-uuid": "^1.4.8",
     "normalizr": "^3.2.3",
     "react": "^16.0.0",

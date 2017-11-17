@@ -17,8 +17,17 @@ const findHaiku = (id) =>
  */
 const updateHaiku = (snapshot, newProps) => {
   if (debugEnabled) {
+    /*
+     * return a mock object that simulates an XHR request
+     */
     alert('Debug mode enabled - not posting to firebase ^_^b');
-    return Promise.resolve();
+    
+    if (Math.random() < 0.75) {
+      return Promise.resolve({id: 1, upvotes: 1});
+    } 
+    else {
+      throw '(Dev) Haiku failed to send.';
+    }
   }
 
   return snapshot

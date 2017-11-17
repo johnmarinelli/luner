@@ -20,7 +20,7 @@ const page = (state, action) => {
 const pagination = (state = initialPaginationState, action) => {
   switch (action.type) {
     case 'HAIKUS_INCREMENT_PAGE':
-      return Object.assign({}, state, {
+      return state.lastPageReached ? state : Object.assign({}, state, {
         page: page(state.page, action)
       });
     case 'HAIKUS_LAST_PAGE_REACHED': {

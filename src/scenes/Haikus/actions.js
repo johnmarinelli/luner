@@ -45,5 +45,7 @@ export {
   haikusIncrementPage,
   haikusLastPageReached,
   haikusPaginatedSuccess,
+  haikusUpvoteSuccess,
+  haikusUpvoteError,
   upvoteHaiku
 };
