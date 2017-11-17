@@ -13,7 +13,6 @@ import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 
-
 /*
  * reducers
  */
@@ -33,6 +32,7 @@ const configureStore = () => {
   let middlewares = [thunk, reduxRouterMiddleware];
 
   if (debugEnabled) { middlewares.push(logger); }
+  console.log(preloadedState);
   
   const store = createStore(
     combineReducers({

@@ -14,3 +14,8 @@ configure({
 
 global.fetch = require('jest-fetch-mock');
 fetch.mockResponse(JSON.stringify({ testing: true }));
+
+/*
+ * mock localStorage
+ */
+require('jest-localstorage-mock');

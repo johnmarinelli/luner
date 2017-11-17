@@ -1,4 +1,4 @@
-import { twentyFourHoursAgo } from './';
+import { twentyFourHoursAgo } from './utils';
 
 const loadState = () => {
   try {
@@ -12,18 +12,20 @@ const loadState = () => {
      * is in store.getState().rootReducer.
      * for now, don't serialize 3rd party state
      */
-    let state = JSON.parse(serializedState).rootReducer;
+    let state = JSON.parse(serializedState);
     if (state.haikus.upvotes.lastUpvote < twentyFourHoursAgo()) {
       state.haikus.upvotes.upvotesRemaining = 3;
     }
+    return state;
   } catch (err) {
+    console.error(err);
     return undefined;
   }
 };
 
 const saveState = (state) => {
   try {
-    const serializedState = JSON.stringify(state);
+    const serializedState = JSON.stringify(state.rootReducer);
     localStorage.setItem('state', serializedState);
   } catch (err) {
     console.error(err);
