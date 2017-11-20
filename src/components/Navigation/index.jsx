@@ -1,25 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import './styles.css';
+import { Button } from '../';
 
 const Navigation = () => {
   return (
     <div className="navigation flex-container">
       <Link to="/">
-        <button type="button">
+        <Button>
           Create
-        </button>
+        </Button>
       </Link>
       <Link to="/about">
-        <button type="button">
+        <Button>
           About
-        </button>
+        </Button>
       </Link>
       <Link to="/browse-haikus">
-        <button type="button">
+        <Button>
           Browse
-        </button>
+        </Button>
       </Link>
     </div>
   );

@@ -5,6 +5,8 @@ import { addHaiku } from './actions.js';
 
 import { validateSyllables } from './services.js';
 
+import { Button } from './../../../../components';
+
 const mapStateToProps = state => ({
   haiku: state.rootReducer.createHaiku,
 });
@@ -35,10 +37,10 @@ let AddHaiku = ({
   };
 
   return (
-    <button 
+    <Button
       onClick={dispatchAddHaiku.bind(null, haiku)}>
       Send
-    </button>
+    </Button>
   );
 };
 
