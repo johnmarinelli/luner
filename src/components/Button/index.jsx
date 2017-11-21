@@ -3,15 +3,17 @@ import { omit } from 'lodash';
 
 import './styles.css';
 
-const Button = (props) => {
-  const { children } = props;
-  const newProps = omit(props, 'children');
+class Button extends React.Component {
+  render () {
+    const { children } = this.props;
+    const newProps = omit(this.props, 'children');
 
-  return (
-    <button {...newProps}>
-      {children}
-    </button>
-  );
+    return (
+      <button {...newProps}>
+        {children}
+      </button>
+    );
+  }
 }
 
 export default Button;

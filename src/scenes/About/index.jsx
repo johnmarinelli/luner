@@ -1,18 +1,18 @@
 import React from 'react';
-import Logo from '../../components/Logo/';
+import { InlineLink, Logo } from '../../components';
 
 import './styles.css';
 
 const About = () => 
   <div className="about">
     <Logo />
-    <div className="intro">
+    <div>
       <br/>
       <br/>
       A Haiku is an ancient form of Japanese poetry 📝.
       <br/>
       <br/>
-      <a href="/">thehaiku.club</a> was designed for people to easily start writing their own haikus ✍️.
+      <InlineLink href="/">thehaiku.club</InlineLink> was designed for people to easily start writing their own haikus ✍️.
       <br/>
       <br/>
     </div>

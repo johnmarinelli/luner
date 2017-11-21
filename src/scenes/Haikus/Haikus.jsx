@@ -9,10 +9,8 @@ const Haikus = ({
     <ul> 
       {renderedHaikus}
     </ul>
+    {showMore} 
     {loadingAnimation}
-    <div className="show-more-wrapper">
-      {showMore}
-    </div>
   </div>;
 
 export default Haikus;

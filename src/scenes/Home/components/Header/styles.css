@@ -1,9 +1,10 @@
-@-webkit-keyframes typing { from { width: 0; } }
-@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
-
-.feedback { 
-  font: bold 1.25em monospace;
-  color: black;
-  letter-spacing: .15em;
+.intro { 
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  color: rgba(175, 47, 47, 0.15);
   width: 100%;
+  padding: 20px 0px;
+  font-size: 1.5em;
+  letter-spacing: 1px;
 }

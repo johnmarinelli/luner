@@ -1,25 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '../';
+import { NavLink } from './components';
 
 const Navigation = () => {
   return (
     <div className="navigation flex-container">
-      <Link to="/">
-        <Button>
-          Create
-        </Button>
-      </Link>
-      <Link to="/about">
-        <Button>
-          About
-        </Button>
-      </Link>
-      <Link to="/browse-haikus">
-        <Button>
-          Browse
-        </Button>
-      </Link>
+      <NavLink exact to="/">
+        Create
+      </NavLink>
+      <NavLink exact to="/about">
+        About
+      </NavLink>
+      <NavLink exact to="/browse-haikus">
+        Browse
+      </NavLink>
     </div>
   );
 }

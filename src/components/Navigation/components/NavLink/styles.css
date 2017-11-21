@@ -1,0 +1,19 @@
+a {
+  overflow: hidden;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-align: center;
+  font-family: 'Open-Sans', sans-serif;
+  color: #555;
+  padding: 20px;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+a.active {
+  background-color: rgba(175, 47, 47, 0.2);
+}

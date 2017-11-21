@@ -1,24 +1,13 @@
 button {
-  padding: 10px 5px;
-  background: #666;
-  border-radius: 2px;
-  color: #fff;
-}
-
-button a {
-  overflow: hidden;
-  font-weight: bold;
-  text-decoration: none;
-  letter-spacing: 0.15em;
+  margin: 20px 0px;
+  padding: 10px;
+  background: none;
+  border-color: rgba(175, 47, 47, 0.2);
+  color: #444;
+  font-size: 1.75em;
 }
 
 button:hover {
   cursor: pointer;
-  background: #333;
+  background-color: #eee;
 }
-
-button a:hover {
-  text-decoration: none;
-}
-
-

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '../../../../../../components';
 
 import './styles.css';
 
@@ -7,7 +8,7 @@ const Upvote = ({
   numUpvotes,
   sendUpvote
 }) => 
-  <button 
+  <Button
     className="upvotes" 
     onClick={sendUpvote}>
     <img 
@@ -17,7 +18,7 @@ const Upvote = ({
       className="upvotes">
       {numUpvotes} 
     </span>
-  </button>
+  </Button>
 
 Upvote.propTypes = {
   numUpvotes: PropTypes.number.isRequired,

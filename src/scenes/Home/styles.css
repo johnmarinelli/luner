@@ -8,6 +8,7 @@
   border: none;
   text-align: right;
   border-bottom: solid thin #aaa;
+  flex-grow: 0;
 }
 
 .navigation a {

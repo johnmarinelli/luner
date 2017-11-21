@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input } from '../../../../../../components';
 
 import './styles.css';
 
@@ -32,7 +33,7 @@ class Line extends React.Component {
     const autofocus = 0 === index;
 
     return (
-      <input 
+      <Input
         ref={input => this.input = input}
         type="text"
         onKeyUp={onKeyUp}

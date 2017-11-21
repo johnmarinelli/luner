@@ -1,4 +1,8 @@
 button.upvotes {
+  font-family: 'Courier-New';
+  padding: 0px 2px;
+  font-size: 0.9em;
+  font-weight: normal;
   border: solid thin gray;
   border-radius: 5px;
   background: none;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
+import { Input } from '../../components';
 import { Row, AddHaiku, Header } from './components/';
 import { fetchDictionaries, spellCheckLines } from './services';
 
@@ -121,13 +122,14 @@ class Home extends React.Component {
           <span className="label" htmlFor="author">
             -
           </span>
-          <input
+          <Input
             onKeyUp={this.onAuthorKeyUp.bind(this)}
             maxLength={15}
             ref={input => this.author = input}
             id="author"
             htmlname="author"
             className="line"
+            placeholder="anonymous"
             defaultValue="anonymous" />
         </label>
         <AddHaiku 

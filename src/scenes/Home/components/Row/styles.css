@@ -15,6 +15,7 @@
 .row-wrapper .label, .row-wrapper .line {
   display: block;
   width: 100%;
+  font-family: 'Open-Sans', sans-serif;
 }
 
 @media (min-width: 500px) {

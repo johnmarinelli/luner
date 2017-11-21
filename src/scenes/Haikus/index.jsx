@@ -11,7 +11,7 @@ import { getVisibleHaikus } from './reducers.js';
 import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
 import { getUpvotesRemaining } from './services/upvotes/reducers.js'; 
 import { paginator } from '../../services/firebase.js';
-import Loader from '../../components/Loader/';
+import { InlineLink, Button, Loader } from '../../components';
 import { HaikuListItem } from './components';
 import Haikus from './Haikus';
 
@@ -100,11 +100,12 @@ class ConnectedHaikus extends React.Component {
 
     showMoreProps.disabled = isLastPageReached;
 
-    const showMore = 
-      <button 
+    const showMore = isLastPageReached ? 
+      <div>Last haiku reached.  <InlineLink href="/">Make some more.</InlineLink></div> :
+      <Button
         {...showMoreProps}>
         Show More
-      </button>;
+      </Button>;
 
     const haikusProps = { 
       renderedHaikus, 
