@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
 import { addHaiku } from './actions.js';
 
 import { validateSyllables } from './services.js';
@@ -39,7 +40,7 @@ let AddHaiku = ({
   return (
     <Button
       onClick={dispatchAddHaiku.bind(null, haiku)}>
-      Send
+      send <FontAwesome name='paper-plane' />
     </Button>
   );
 };

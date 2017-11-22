@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../../../../../../components';
+import FontAwesome from 'react-fontawesome';
 
 import './styles.css';
 
@@ -11,9 +12,7 @@ const Upvote = ({
   <Button
     className="upvotes" 
     onClick={sendUpvote}>
-    <img 
-      src="/thumbs_up.svg" 
-      alt="upvotes" />
+    <FontAwesome name='thumbs-up' />
     <span 
       className="upvotes">
       {numUpvotes} 

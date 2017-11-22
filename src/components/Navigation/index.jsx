@@ -1,17 +1,18 @@
 import React from 'react';
 import { NavLink } from './components';
+import FontAwesome from 'react-fontawesome';
 
 const Navigation = () => {
   return (
     <div className="navigation flex-container">
       <NavLink exact to="/">
-        Create
+        write <FontAwesome name='pencil' />
       </NavLink>
       <NavLink exact to="/about">
-        About
+        why <FontAwesome name='info-circle' />
       </NavLink>
       <NavLink exact to="/browse-haikus">
-        Browse
+        browse <FontAwesome name='eye' />
       </NavLink>
     </div>
   );
