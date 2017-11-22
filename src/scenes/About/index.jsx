@@ -5,14 +5,12 @@ import './styles.css';
 
 const About = () => 
   <div className="about">
-    <Logo />
     <div>
+      is designed 
       <br/>
+      to be a streaming mosaic 
       <br/>
-      A Haiku is an ancient form of Japanese poetry 📝.
-      <br/>
-      <br/>
-      <InlineLink href="/">thehaiku.club</InlineLink> was designed for people to easily start writing their own haikus ✍️.
+      of near-anonymous haikus.
       <br/>
       <br/>
     </div>
@@ -25,7 +23,7 @@ const About = () =>
           on three lines.
         </div>
         <div className="displayed-haiku-line">
-          get creative, go!
+          <InlineLink href="/" style={{color: '#555'}}>get creative, go!</InlineLink>
         </div>
       </div>
     </div>

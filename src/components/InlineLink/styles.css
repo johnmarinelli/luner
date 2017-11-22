@@ -1,0 +1,10 @@
+a.inline {
+  color: rgba(175, 47, 47, 0.2);
+  padding: 0px;
+  background-color: #f5f5f5;
+}
+
+a.inline:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
