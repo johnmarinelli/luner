@@ -26,7 +26,7 @@ const updateHaiku = (snapshot, newProps) => {
       return Promise.resolve({id: 1, upvotes: 1});
     } 
     else {
-      throw '(Dev) Haiku failed to send.';
+      throw new Error('(Dev) Haiku failed to send.');
     }
   }
 

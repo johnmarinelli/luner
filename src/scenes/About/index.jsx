@@ -1,5 +1,5 @@
 import React from 'react';
-import { InlineLink, Logo } from '../../components';
+import { InlineLink } from '../../components';
 
 import './styles.css';
 

@@ -1,4 +1,4 @@
-import { now, millisecondsToHours, getHoursDiff } from '../../../services/utils';
+import { now, getHoursDiff } from '../../../services/utils';
 
 /*
  * https://medium.com/hacking-and-gonzo/how-hacker-news-ranking-algorithm-works-1d9b0cf2c08d
