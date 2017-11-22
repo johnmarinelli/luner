@@ -102,7 +102,7 @@ class ConnectedHaikus extends React.Component {
     showMoreProps.disabled = isLastPageReached;
 
     const showMore = isLastPageReached ? 
-      <div>Last haiku reached.  <InlineLink href="/">Make some more.</InlineLink></div> :
+      <div style={{'letterSpacing': '0.1em', 'marginBottom': '10px'}}>Showing all haikus.  <InlineLink href="/">Make some more.</InlineLink></div> :
       <Button
         {...showMoreProps}>
         Show More
