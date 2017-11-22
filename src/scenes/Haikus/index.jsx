@@ -11,6 +11,7 @@ import { getVisibleHaikus } from './reducers.js';
 import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
 import { getUpvotesRemaining } from './services/upvotes/reducers.js'; 
 import { paginator } from '../../services/firebase.js';
+import { rankHaikus } from './services/utils.js';
 import { InlineLink, Button, Loader } from '../../components';
 import { HaikuListItem } from './components';
 import Haikus from './Haikus';
@@ -85,7 +86,7 @@ class ConnectedHaikus extends React.Component {
       isLastPageReached
     } = this.props;
 
-    const renderedHaikus = haikus.map(haiku => 
+    const renderedHaikus = haikus.sort(rankHaikus).map(haiku => 
       <HaikuListItem 
         key={haiku.id} 
         sendUpvote={this.sendUpvote.bind(this, haiku)}

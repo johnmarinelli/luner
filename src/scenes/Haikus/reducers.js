@@ -4,7 +4,7 @@ import pagination from './services/pagination/reducers';
 import upvotes from './services/upvotes/reducers';
 import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
-import { unique } from '../services/utils';
+import { unique } from '../../services/utils';
 
 /*
  * returns array of haikus sorted by createdAt
