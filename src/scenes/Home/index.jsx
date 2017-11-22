@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
 import { Input } from '../../components';
-import { Row, AddHaiku, Header } from './components/';
+import { Row, AddHaiku } from './components/';
 import { fetchDictionaries, spellCheckLines } from './services';
 
 import './styles.css';
@@ -96,7 +96,6 @@ class Home extends React.Component {
 
     return (
       <div className="lines flex-container">
-        <Header />
         <Row 
           ref={row => this.rows[0] = row}
           onLineKeyUp={this.onLineKeyUp.bind(this, 0)}
