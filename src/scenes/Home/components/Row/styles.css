@@ -2,54 +2,21 @@
   display: block;
   width: 100%;
   margin-bottom: 1rem;
-}
-
-@media (min-width: 500px) {
-  .row-wrapper {
-    display: flex;
-    flex-directio3: row;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .row-wrapper .label, .row-wrapper .line {
   display: block;
   width: 100%;
   font-family: 'Open-Sans', sans-serif;
+  width: auto;
+  display: flex;
 }
 
-@media (min-width: 500px) {
-  .row-wrapper .label, .row-wrapper .line {
-    width: auto;
-    display: flex;
-  }
-}
 .row-wrapper .label {
   font-size: 13px;
-}
-@media (min-width: 500px) {
-  .row-wrapper .label {
-    /* margin-right: 1rem; */
-    border: none;
-    margin: 10px;
-  }
-}
-
-.row-wrapper .line {
-  padding: 20px;
-  font-size: 20px;
-  border-color: #777;
-}
-
-.row-wrapper .line:focus {
-  outline: none;
-  border-color: rgba(175, 47, 47, 1.0);
-}
-
-@media (min-width: 500px) {
-  .row-wrapper .line {
-    flex-grow: 1;
-    border: none;
-    border-bottom: solid thin black;
-  }
+  border: none;
+  margin: 10px;
 }

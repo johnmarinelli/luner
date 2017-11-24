@@ -8,3 +8,24 @@
   font-style: italic;
   font-weight: heavy;
 }
+
+@media (max-width: 768px) {
+  .row-wrapper .line {
+    border: none;
+    border-bottom: solid thin;
+  }
+}
+
+.row-wrapper .line {
+  padding: 20px;
+  font-size: 20px;
+  border-color: #777;
+  flex-grow: 1;
+  border: none;
+  border-bottom: solid thin black;
+}
+
+.row-wrapper .line:focus {
+  outline: none;
+  border-color: rgba(175, 47, 47, 1.0);
+}
