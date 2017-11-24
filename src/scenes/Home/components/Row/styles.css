@@ -8,8 +8,6 @@
 }
 
 .row-wrapper .label, .row-wrapper .line {
-  display: block;
-  width: 100%;
   font-family: 'Open-Sans', sans-serif;
   width: auto;
   display: flex;
