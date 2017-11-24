@@ -11,7 +11,7 @@ import haikus, * as reducers from './reducers';
 
 import { setupIntegrationTests } from '../test-utils';
 
-const initialState = haikus(undefined, {});
+let initialState = null;
 
 describe('(Component) Haikus', () => {
   let wrapper, store;
@@ -19,6 +19,7 @@ describe('(Component) Haikus', () => {
   beforeEach(() => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
+    initialState = haikus(undefined, {});
     const state = { rootReducer: { haikus: initialState }};
 
     store = mockStore(state);
@@ -44,6 +45,7 @@ describe('(Redux Store) Haikus', () => {
   beforeEach(() => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
+    initialState = haikus(undefined, {});
     const state = { rootReducer: { haikus: initialState }};
 
     store = mockStore(state);
@@ -63,6 +65,10 @@ describe('(Redux Store) Haikus', () => {
 });
 
 describe('(Reducers) Haikus', () => {
+  
+  beforeEach(() => {
+    initialState = haikus(undefined, {});
+  });
 
   it('should handle HAIKUS_UPVOTE_SUCCESS', () => {
     expect(
