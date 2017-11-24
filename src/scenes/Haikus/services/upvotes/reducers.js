@@ -1,4 +1,4 @@
-import { now } from '../../../../services';
+import { now } from '../../../../services/utils';
 
 const initialUpvoteState  = {
   upvotesRemaining: 3,

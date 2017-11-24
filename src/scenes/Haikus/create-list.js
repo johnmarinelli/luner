@@ -26,9 +26,9 @@ const createList = (filter) => {
     }
 
     switch (action.type) {
-      case 'HAIKUS_FETCH_REQUEST': return true;
-      case 'HAIKUS_FETCH_SUCCESS': 
-      case 'HAIKUS_FETCH_FAILURE': return false;
+      case 'HAIKUS_PAGINATED_REQUEST': return true;
+      case 'HAIKUS_PAGINATED_SUCCESS': 
+      case 'HAIKUS_PAGINATED_FAILURE': return false;
       default: return state;
     }
   };
@@ -39,9 +39,9 @@ const createList = (filter) => {
     }
 
     switch (action.type) {
-      case 'HAIKUS_FETCH_FAILURE': return action.message;
-      case 'HAIKUS_FETCH_REQUEST':
-      case 'HAIKUS_FETCH_SUCCESS': return null;
+      case 'HAIKUS_PAGINATED_FAILURE': return action.message;
+      case 'HAIKUS_PAGINATED_REQUEST':
+      case 'HAIKUS_PAGINATED_SUCCESS': return null;
       default: return state;
     }
   };
