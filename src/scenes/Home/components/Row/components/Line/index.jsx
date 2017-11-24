@@ -11,11 +11,11 @@ class Line extends React.Component {
   }
 
   setFirstChar (c) {
-    this.input.value = c + this.input.value;
+    this.input.setValue(c + this.input.getValue());
   }
 
   clearInput () {
-    this.input.value = '';
+    this.input.setValue('');
   }
 
   constructor () {

@@ -8,7 +8,7 @@ import './styles.css';
 class Row extends React.Component {
 
   focus () {
-    this.line.focus();
+    return this.line.focus();
   }
 
   setFirstChar (c) {
@@ -34,7 +34,7 @@ class Row extends React.Component {
     } = this.props;
 
     return (
-      <label className=" row-wrapper">
+      <div className="row-wrapper">
         <Line 
           ref={line => this.line = line}
           onKeyUp={onLineKeyUp} 
@@ -45,7 +45,7 @@ class Row extends React.Component {
           count={syllables}
           max={maxSyllableCount}
           inputName={'line' + index}/>
-      </label>
+      </div>
     );
   }
 };
