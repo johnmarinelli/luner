@@ -1,5 +1,4 @@
 import fetchDictionaries from './fetch-dictionaries';
-import { haiku, arrayOfHaikus } from '../../services';
 
 /*
  * spellcheck
@@ -23,8 +22,6 @@ const spellCheckLines = (typo, lineContents) => {
 }
 
 export {
-  haiku,
-  arrayOfHaikus,
   spellCheckLines,
   fetchDictionaries
 };

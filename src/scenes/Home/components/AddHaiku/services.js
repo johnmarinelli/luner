@@ -23,7 +23,7 @@ const addHaiku = (haiku) => {
     .database()
     .ref('haikus')
     .push(fbHaiku)
-    .then(__ => fbHaiku);
+    .then(_ => fbHaiku);
 };
 
 export {

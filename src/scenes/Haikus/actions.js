@@ -28,11 +28,6 @@ const haikusUpvoteError = (error) => ({
   error
 });
 
-const haikusUpdateError = (error) => ({
-  type: 'HAIKUS_UPDATE_ERROR',
-  error
-});
-
 const upvoteHaiku = (haiku) => (dispatch) =>
   api
     .findHaiku(haiku.id)
