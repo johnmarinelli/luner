@@ -16,7 +16,7 @@ const addHaiku = (haiku) => {
 
   if (debugEnabled) {
     alert('Debug mode enabled - not posting to firebase ^_^b');
-    return Promise.resolve();
+    return Promise.resolve(fbHaiku);
   }
 
   return fire
