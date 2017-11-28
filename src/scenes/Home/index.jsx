@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
 import { Input } from '../../components';
 import { Row, AddHaiku } from './components/';
-import { fetchDictionaries, spellCheckLines } from './services';
 
 import './styles.css';
-
-let typo = null;
 
 const syllable = require('syllable');
 
@@ -22,11 +19,6 @@ class Home extends React.Component {
       this.rows[index + 1].focus();
     }
     else this.author.focus();
-  }
-
-  validateInputs () {
-    const lines = this.rows.map(row => row.line.props.lineContent);
-    return spellCheckLines(typo, lines);
   }
 
   clearInputs () {
@@ -81,14 +73,7 @@ class Home extends React.Component {
     this.rows = new Array(3).fill(null);
     this.focusNextInput = this.focusNextInput.bind(this);
     this.clearInputs = this.clearInputs.bind(this);
-    this.validateInputs = this.validateInputs.bind(this);
     this.authorInput = null;
-  }
-
-  componentDidMount () {
-    if (null === typo) {
-      fetchDictionaries().then(t => typo = t);
-    }
   }
 
   render () {
@@ -132,8 +117,7 @@ class Home extends React.Component {
             defaultValue="anonymous" />
         </label>
         <AddHaiku 
-          clearInputs={this.clearInputs} 
-          validateInputs={this.validateInputs} />
+          clearInputs={this.clearInputs} />
       </div>
     );
   }

@@ -19,13 +19,12 @@ const mapDispatchToProps = (dispatch) => ({
 let AddHaiku = ({
   haiku,
   addHaiku,
-  validateInputs,
   clearInputs
 }) => {
   const dispatchAddHaiku = (haiku) => {
     const expectedCounts = [5,3,5];
 
-    if (validateInputs() && validateSyllables(haiku.lines, expectedCounts)) {
+    if (validateSyllables(haiku.lines, expectedCounts)) {
       addHaiku(haiku)
         .then(() => {
           alert('Haiku posted.  Check out the Browse page to see it!');
@@ -34,7 +33,7 @@ let AddHaiku = ({
         .catch(reason => alert(`Haiku failed to post: ${reason}`));
     }
     else {
-      alert('Haiku failed to send.  Please check for typos, and make sure each line has 5, 3, and 5 syllables respectively.');
+      alert('Haiku failed to send.  Please make sure each line has 5, 3, and 5 syllables respectively.');
     }
   };
 
@@ -49,7 +48,6 @@ let AddHaiku = ({
 AddHaiku.propTypes = {
   haiku: PropTypes.object.isRequired,
   addHaiku: PropTypes.func,
-  validateInputs: PropTypes.func,
   clearInputs: PropTypes.func
 };
 
