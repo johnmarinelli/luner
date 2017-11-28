@@ -28,6 +28,17 @@ const haikusUpvoteError = (error) => ({
   error
 });
 
+const haikusFirebaseChildAdded = (haiku) => ({
+  type: 'HAIKUS_FIREBASE_CHILD_ADDED',
+  filter: 'all',
+  haiku
+});
+
+const haikusFirebaseChildUpdated = (haiku) => ({
+  type: 'HAIKUS_FIREBASE_CHILD_UPDATED',
+  haiku
+});
+
 const upvoteHaiku = (haiku) => (dispatch) =>
   api
     .findHaiku(haiku.id)
@@ -47,5 +58,7 @@ export {
   haikusPaginatedSuccess,
   haikusUpvoteSuccess,
   haikusUpvoteError,
+  haikusFirebaseChildAdded,
+  haikusFirebaseChildUpdated,
   upvoteHaiku
 };

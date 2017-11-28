@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import pagination from './services/pagination/reducers';
 import upvotes from './services/upvotes/reducers';
+import firebase from './services/firebase/reducers';
 import createList, * as fromList from './create-list';
 import byId, * as fromById  from './by-id';
 import { unique } from '../../services/utils';

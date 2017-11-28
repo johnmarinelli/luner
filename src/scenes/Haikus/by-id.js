@@ -38,6 +38,18 @@ const byId = (state = {}, action) => {
           [id]: upvoteSuccess(state[id], action)
         });
       }
+      case 'HAIKUS_FIREBASE_CHILD_ADDED': {
+        return {
+          ...state,
+          [action.haiku.id]: action.haiku
+        }
+      }
+      case 'HAIKUS_FIREBASE_CHILD_UPDATED': {
+        return {
+          ...state,
+          [action.haiku.id]: action.haiku
+        }
+      }
       default: return state;
 
     }

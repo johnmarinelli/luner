@@ -5,6 +5,8 @@ import {
   haikusIncrementPage, 
   haikusPaginatedSuccess, 
   haikusLastPageReached, 
+  haikusFirebaseChildAdded,
+  haikusFirebaseChildUpdated,
   upvoteHaiku 
 } from './actions.js';
 import { getVisibleHaikus } from './reducers.js';
@@ -15,6 +17,7 @@ import { rankHaikus } from './services/utils.js';
 import { InlineLink, Button, Loader } from '../../components';
 import { HaikuListItem } from './components';
 import Haikus from './Haikus';
+import { fire } from '../../services';
 
 import './styles.css';
 
@@ -34,6 +37,8 @@ const mapDispatchToProps = {
   haikusIncrementPage,
   haikusPaginatedSuccess,
   haikusLastPageReached,
+  haikusFirebaseChildAdded,
+  haikusFirebaseChildUpdated,
   upvoteHaiku
 };
 
@@ -55,8 +60,17 @@ class ConnectedHaikus extends React.Component {
     const { 
       haikusPaginatedSuccess, 
       haikusLastPageReached, 
+      haikusFirebaseChildAdded,
+      haikusFirebaseChildUpdated,
       filter 
     } = this.props;
+
+    fire.database().ref('haikus').on('child_added', ss => {
+      haikusFirebaseChildAdded(ss.val());
+    })
+    fire.database().ref('haikus').on('child_changed', ss => {
+      haikusFirebaseChildUpdated(ss.val());
+    });
 
     if (!paginator.initialized) {
       paginator.reset();

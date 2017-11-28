@@ -13,6 +13,11 @@ const createList = (filter) => {
           [...state, ...action.response.result] : 
           state;
       }
+      case 'HAIKUS_FIREBASE_CHILD_ADDED': {
+        return filter === action.filter ?
+          [...state, action.haiku.id] : 
+          state;
+      }
       default: return state;
     }
   };
