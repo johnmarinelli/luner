@@ -29,6 +29,7 @@ let AddHaiku = ({
       addHaiku(haiku)
         .then(() => {
           alert('Haiku posted.  Check out the Browse page to see it!');
+          clearInputs();
         })
         .catch(reason => alert(`Haiku failed to post: ${reason}`));
     }
