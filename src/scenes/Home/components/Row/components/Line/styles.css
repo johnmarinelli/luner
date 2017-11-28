@@ -9,13 +9,6 @@
   font-weight: heavy;
 }
 
-@media (max-width: 768px) {
-  .row-wrapper .line {
-    border: none;
-    border-bottom: solid thin;
-  }
-}
-
 .row-wrapper .line {
   padding: 20px;
   font-size: 20px;
@@ -28,4 +21,13 @@
 .row-wrapper .line:focus {
   outline: none;
   border-color: rgba(175, 47, 47, 1.0);
+}
+
+@media (max-width: 768px) {
+  .row-wrapper .line {
+    border: none;
+    border-bottom: solid thin;
+    padding: 15px;
+    font-size: 15px;
+  }
 }
