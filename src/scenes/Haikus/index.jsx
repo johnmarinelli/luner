@@ -17,7 +17,7 @@ import { rankHaikus } from './services/utils.js';
 import { InlineLink, Button, Loader } from '../../components';
 import { HaikuListItem } from './components';
 import Haikus from './Haikus';
-import { fire } from '../../services';
+import { attachFirebaseListener, detachFirebaseListener } from '../../services/firebase';
 
 import './styles.css';
 
@@ -65,12 +65,8 @@ class ConnectedHaikus extends React.Component {
       filter 
     } = this.props;
 
-    fire.database().ref('haikus').on('child_added', ss => {
-      haikusFirebaseChildAdded(ss.val());
-    })
-    fire.database().ref('haikus').on('child_changed', ss => {
-      haikusFirebaseChildUpdated(ss.val());
-    });
+    attachFirebaseListener('child_added', ss => haikusFirebaseChildAdded(ss.val()));
+    attachFirebaseListener('child_changed', ss => haikusFirebaseChildUpdated(ss.val()));
 
     if (!paginator.initialized) {
       paginator.reset();
@@ -139,6 +135,8 @@ class ConnectedHaikus extends React.Component {
       paginator.off('isLastPage');
       paginator.initialized = false;
     }
+    detachFirebaseListener('child_added');
+    detachFirebaseListener('child_changed');
   }
 };
 

@@ -78,5 +78,29 @@ describe('(Reducers) Haikus', () => {
     );
   });
 
+  it('should handle HAIKUS_FIREBASE_CHILD_ADDED', () => {
+    const haiku = {
+      id: 1,
+      author: 'john'
+    };
+    expect(
+      Object.keys(haikus(initialState, actions.haikusFirebaseChildAdded(haiku)).byId).length
+    ).toEqual(
+      1
+    );
+  });
+
+  it('should handle HAIKUS_FIREBASE_CHILD_UPDATED', () => {
+    const haiku = {
+      id: 1,
+      author: 'jake'
+    };
+    const newHaikus = haikus(initialState, actions.haikusFirebaseChildAdded(haiku));
+    expect(
+      haikus(newHaikus, actions.haikusFirebaseChildUpdated(haiku)).byId[1].author
+    ).toEqual(
+      'jake'
+    );
+  });
 });
 

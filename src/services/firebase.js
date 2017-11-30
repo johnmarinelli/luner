@@ -23,6 +23,23 @@ else {
 }
 
 let fire = firebase.initializeApp(config);
+const firebaseEventListeners = {};
+const attachFirebaseListener = (event, cb) => {
+  if ('test' !== process.env.NODE_ENV) {
+    const handle = fire.database().ref('haikus').on(event, cb);
+    firebaseEventListeners[event] = handle;
+    return handle;
+  }
+  else return null;
+};
+
+const detachFirebaseListener = (event) => {
+  if ('test' !== process.env.NODE_ENV) {
+    return fire.database().ref('haikus').off(event, firebaseEventListeners[event])
+  }
+  else return null;
+};
+
 const paginationOpts = {
   pageSize: 10,
   finite: true
@@ -51,6 +68,8 @@ if (debugEnabled) {
 }
 
 export { 
-  paginator
+  paginator,
+  attachFirebaseListener,
+  detachFirebaseListener
 };
 export default fire;
