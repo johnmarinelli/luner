@@ -102,5 +102,19 @@ describe('(Reducers) Haikus', () => {
       'jake'
     );
   });
+
+  it('should handle HAIKUS_FIREBASE_CHILD_REMOVED', () => {
+    const haiku = {
+      id: 1,
+      author: 'jake'
+    };
+    const newHaikus = haikus(initialState, actions.haikusFirebaseChildAdded(haiku));
+
+    expect(
+      Object.keys(haikus(newHaikus, actions.haikusFirebaseChildRemoved(haiku.id)).byId).length
+    ).toEqual(
+      0
+    );
+  });
 });
 

@@ -50,6 +50,10 @@ const byId = (state = {}, action) => {
           [action.haiku.id]: action.haiku
         }
       }
+      case 'HAIKUS_FIREBASE_CHILD_REMOVED': {
+        const { [action.id + '']: _, ...newState } = state;
+        return newState;
+      }
       default: return state;
 
     }

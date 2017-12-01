@@ -18,6 +18,9 @@ const createList = (filter) => {
           [...state, action.haiku.id] : 
           state;
       }
+      case 'HAIKUS_FIREBASE_CHILD_REMOVED': {
+        return state.filter(id => id !== action.id);
+      }
       default: return state;
     }
   };

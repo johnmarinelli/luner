@@ -39,6 +39,11 @@ const haikusFirebaseChildUpdated = (haiku) => ({
   haiku
 });
 
+const haikusFirebaseChildRemoved = (id) => ({
+  type: 'HAIKUS_FIREBASE_CHILD_REMOVED',
+  id
+});
+
 const upvoteHaiku = (haiku) => (dispatch) =>
   api
     .findHaiku(haiku.id)
@@ -60,5 +65,6 @@ export {
   haikusUpvoteError,
   haikusFirebaseChildAdded,
   haikusFirebaseChildUpdated,
+  haikusFirebaseChildRemoved,
   upvoteHaiku
 };

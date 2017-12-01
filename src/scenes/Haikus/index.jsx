@@ -7,6 +7,7 @@ import {
   haikusLastPageReached, 
   haikusFirebaseChildAdded,
   haikusFirebaseChildUpdated,
+  haikusFirebaseChildRemoved,
   upvoteHaiku 
 } from './actions.js';
 import { getVisibleHaikus } from './reducers.js';
@@ -39,6 +40,7 @@ const mapDispatchToProps = {
   haikusLastPageReached,
   haikusFirebaseChildAdded,
   haikusFirebaseChildUpdated,
+  haikusFirebaseChildRemoved,
   upvoteHaiku
 };
 
@@ -62,11 +64,13 @@ class ConnectedHaikus extends React.Component {
       haikusLastPageReached, 
       haikusFirebaseChildAdded,
       haikusFirebaseChildUpdated,
+      haikusFirebaseChildRemoved,
       filter 
     } = this.props;
 
     attachFirebaseListener('child_added', ss => haikusFirebaseChildAdded(ss.val()));
     attachFirebaseListener('child_changed', ss => haikusFirebaseChildUpdated(ss.val()));
+    attachFirebaseListener('child_removed', ss => haikusFirebaseChildRemoved(ss.val().id));
 
     if (!paginator.initialized) {
       paginator.reset();
@@ -137,6 +141,7 @@ class ConnectedHaikus extends React.Component {
     }
     detachFirebaseListener('child_added');
     detachFirebaseListener('child_changed');
+    detachFirebaseListener('child_removed');
   }
 };
 
