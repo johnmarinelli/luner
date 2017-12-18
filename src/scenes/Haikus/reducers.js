@@ -14,12 +14,18 @@ const getVisibleHaikus = (state, filter) => {
   const ids = fromList.getIds(state.rootReducer.haikus.listByFilter[filter]);
   const uniqueIds = unique(ids);
 
-  return uniqueIds.map(id => 
+  return uniqueIds.map(id =>
     fromById.getHaiku(state.rootReducer.haikus.byId, id)
   ).sort((a, b) => b.createdAt - a.createdAt);
 };
 
-const getErrorMessage = (state, filter) => 
+/*
+ * returns a Haiku object or null
+ */
+const getFeaturedHaiku = (state, id) =>
+  fromById.getHaiku(state.rootReducer.haikus.byId, id);
+
+const getErrorMessage = (state, filter) =>
   fromList.getErrorMessage(state.rootReducer.haikus.listByFilter[filter]);
 
 const listByFilter = combineReducers({
@@ -35,6 +41,7 @@ const haikus = combineReducers({
 
 export {
   getVisibleHaikus,
+  getFeaturedHaiku,
   getErrorMessage
 };
 

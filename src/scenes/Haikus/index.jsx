@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { 
-  haikusIncrementPage, 
-  haikusPaginatedSuccess, 
-  haikusLastPageReached, 
+
+import {
+  haikusIncrementPage,
+  haikusPaginatedSuccess,
+  haikusLastPageReached,
   haikusFirebaseChildAdded,
   haikusFirebaseChildUpdated,
   haikusFirebaseChildRemoved,
-  upvoteHaiku 
+  upvoteHaiku
 } from './actions.js';
-import { getVisibleHaikus } from './reducers.js';
-import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js'; 
-import { getUpvotesRemaining } from './services/upvotes/reducers.js'; 
+import { getVisibleHaikus, getFeaturedHaiku } from './reducers.js';
+import { getCurrentPage, getLastPageReached } from './services/pagination/reducers.js';
+import { getUpvotesRemaining } from './services/upvotes/reducers.js';
 import { paginator } from '../../services/firebase.js';
-import { rankHaikus } from './services/utils.js';
+import { rankHaikus, parseQueryString } from './services/utils.js';
 import { InlineLink, Button, Loader } from '../../components';
-import { HaikuListItem } from './components';
+import { HaikuListItem, FeaturedHaiku } from './components';
 import Haikus from './Haikus';
 import { attachFirebaseListener, detachFirebaseListener } from '../../services/firebase';
 
@@ -24,9 +25,13 @@ import './styles.css';
 
 const mapStateToProps = (state, { match }) => {
   const filter = match.params.filter || 'all';
+  const queryString = state.router.location.search;
+
+  const queryParams = queryString ? parseQueryString(queryString.split('?')[1]) : {};
 
   return {
     haikus: getVisibleHaikus(state, filter),
+    featuredHaiku: getFeaturedHaiku(state, queryParams.id),
     page: getCurrentPage(state),
     isLastPageReached: getLastPageReached(state),
     upvotesRemaining: getUpvotesRemaining(state),
@@ -59,13 +64,13 @@ class ConnectedHaikus extends React.Component {
   }
 
   componentDidMount () {
-    const { 
-      haikusPaginatedSuccess, 
-      haikusLastPageReached, 
+    const {
+      haikusPaginatedSuccess,
+      haikusLastPageReached,
       haikusFirebaseChildAdded,
       haikusFirebaseChildUpdated,
       haikusFirebaseChildRemoved,
-      filter 
+      filter
     } = this.props;
 
     attachFirebaseListener('child_added', ss => haikusFirebaseChildAdded(ss.val()));
@@ -89,23 +94,38 @@ class ConnectedHaikus extends React.Component {
   sendUpvote (haiku) {
     const { upvotesRemaining, upvoteHaiku } = this.props;
 
-    upvotesRemaining > 0 ? 
-      upvoteHaiku(haiku) : 
+    upvotesRemaining > 0 ?
+      upvoteHaiku(haiku) :
       alert('You have used all your upvotes for today.');
   }
 
   render () {
-    const { 
-      haikus, 
+    const {
+      haikus,
+      featuredHaiku,
       isLastPageReached
     } = this.props;
 
-    const renderedHaikus = haikus.sort(rankHaikus).map(haiku => 
-      <HaikuListItem 
-        key={haiku.id} 
+    const renderedHaikus = haikus.sort(rankHaikus).map(haiku =>
+      <HaikuListItem
+        key={haiku.id}
         sendUpvote={this.sendUpvote.bind(this, haiku)}
         haiku={haiku} />
     );
+
+    const featuredHaikuStyle = {
+    };
+    console.log(featuredHaiku);
+
+    const renderedFeaturedHaiku =
+      featuredHaiku ?
+      <FeaturedHaiku
+        sendUpvote={this.sendUpvote.bind(this, featuredHaiku)}
+        haiku={featuredHaiku}
+        featured={true} />
+      :
+      null;
+
     const loadingAnimation = (renderedHaikus.length < 1) ? <Loader /> : '';
 
     const showMoreProps = {
@@ -115,7 +135,7 @@ class ConnectedHaikus extends React.Component {
 
     showMoreProps.disabled = isLastPageReached;
 
-    const showMore = isLastPageReached ? 
+    const showMore = isLastPageReached ?
       <div style={{'letterSpacing': '0.1em', 'marginBottom': '10px'}}>
         Showing all haikus.  <InlineLink href="/">Make some more.</InlineLink>
       </div> :
@@ -124,10 +144,11 @@ class ConnectedHaikus extends React.Component {
         Show More
       </Button>;
 
-    const haikusProps = { 
-      renderedHaikus, 
-      loadingAnimation, 
-      showMore 
+    const haikusProps = {
+      renderedHaikus,
+      renderedFeaturedHaiku,
+      loadingAnimation,
+      showMore
     };
 
     return <Haikus {...haikusProps} />;

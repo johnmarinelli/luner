@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '../../../../../../components';
+import { Button } from '../../../../components';
 import FontAwesome from 'react-fontawesome';
 
 import './styles.css';
@@ -8,14 +8,14 @@ import './styles.css';
 const Upvote = ({
   numUpvotes,
   sendUpvote
-}) => 
+}) =>
   <Button
-    className="upvotes" 
+    className="upvotes"
     onClick={sendUpvote}>
     <FontAwesome name='thumbs-up' />
-    <span 
+    <span
       className="upvotes">
-      {numUpvotes} 
+      {numUpvotes}
     </span>
   </Button>
 

@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Upvote from '../Upvote';
 import HaikuLine from '../HaikuLine';
-import { ListItem } from './components';
 
-const HaikuListItem = ({
+const FeaturedHaiku = ({
   haiku,
   sendUpvote
 }) =>
-  <ListItem>
+  <div>
     {haiku.lines.map((line, idx) =>
       <HaikuLine
         line={line.content}
@@ -17,11 +16,11 @@ const HaikuListItem = ({
     <Upvote
       numUpvotes={haiku.upvotes || 0 }
       sendUpvote={sendUpvote} />
-  </ListItem>
+  </div>
 
-HaikuListItem.propTypes = {
+FeaturedHaiku.propTypes = {
   haiku: PropTypes.object.isRequired,
   sendUpvote: PropTypes.func
 };
 
-export default HaikuListItem;
+export default FeaturedHaiku;

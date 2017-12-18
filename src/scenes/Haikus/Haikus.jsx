@@ -2,14 +2,16 @@ import React from 'react';
 
 const Haikus = ({
   renderedHaikus,
+  renderedFeaturedHaiku,
   loadingAnimation,
   showMore
-}) => 
+}) =>
   <div className="haikus">
-    <ul> 
+    {renderedFeaturedHaiku}
+    <ul>
       {renderedHaikus}
     </ul>
-    {showMore} 
+    {showMore}
     {loadingAnimation}
   </div>;
 

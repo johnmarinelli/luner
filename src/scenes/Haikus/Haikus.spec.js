@@ -20,7 +20,16 @@ describe('(Component) Haikus', () => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
     initialState = haikus(undefined, {});
-    const state = { rootReducer: { haikus: initialState }};
+    const state = {
+      rootReducer: {
+        haikus: initialState
+      },
+
+      router: {
+        location: {
+        }
+      }
+    };
 
     store = mockStore(state);
 
@@ -65,7 +74,7 @@ describe('(Redux Store) Haikus', () => {
 });
 
 describe('(Reducers) Haikus', () => {
-  
+
   beforeEach(() => {
     initialState = haikus(undefined, {});
   });
