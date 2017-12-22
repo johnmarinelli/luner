@@ -5,11 +5,12 @@ import { Navigation } from '../../../../components/';
 
 import './styles.css';
 
-const App = () => 
-  <div className='flex-container flex-column top-level-container'>
+const App = () => (
+  <div className="flex-container flex-column top-level-container">
     <Header />
     <Main />
     <Navigation />
-  </div>;
+  </div>
+);
 
 export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Counter from './'; 
+import Counter from './';
 
 const wrapper = shallow(<Counter />);
 

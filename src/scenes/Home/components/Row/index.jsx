@@ -6,25 +6,24 @@ import Counter from './components/Counter/';
 import './styles.css';
 
 class Row extends React.Component {
-
-  focus () {
+  focus() {
     return this.line.focus();
   }
 
-  setFirstChar (c) {
+  setFirstChar(c) {
     this.line.setFirstChar(c);
   }
 
-  clearInput () {
+  clearInput() {
     this.line.clearInput();
   }
 
-  constructor () {
+  constructor() {
     super();
     this.line = null;
   }
 
-  render () {
+  render() {
     const {
       index,
       maxSyllableCount,
@@ -35,20 +34,22 @@ class Row extends React.Component {
 
     return (
       <div className="row-wrapper">
-        <Line 
-          ref={line => this.line = line}
-          onKeyUp={onLineKeyUp} 
-          index={index} 
+        <Line
+          ref={line => (this.line = line)}
+          onKeyUp={onLineKeyUp}
+          index={index}
           lineContent={lineContent}
-          maxSyllableCount={maxSyllableCount} />
+          maxSyllableCount={maxSyllableCount}
+        />
         <Counter
           count={syllables}
           max={maxSyllableCount}
-          inputName={'line' + index}/>
+          inputName={'line' + index}
+        />
       </div>
     );
   }
-};
+}
 
 Row.propTypes = {
   index: PropTypes.number.isRequired,

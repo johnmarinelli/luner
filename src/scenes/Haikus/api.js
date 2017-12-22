@@ -3,8 +3,13 @@ import { debugEnabled, fire } from '../../services/';
 /*
  * returns a Firebase promise that returns a snapshot
  */
-const findHaiku = (id) => 
-  fire.database().ref('haikus').orderByChild('id').equalTo(id).once('child_added');
+const findHaiku = id =>
+  fire
+    .database()
+    .ref('haikus')
+    .orderByChild('id')
+    .equalTo(id)
+    .once('child_added');
 
 /*
  * @params:
@@ -21,25 +26,18 @@ const updateHaiku = (snapshot, newProps) => {
      * return a mock object that simulates an XHR request
      */
     alert('Debug mode enabled - not posting to firebase ^_^b');
-    
+
     if (Math.random() < 0.75) {
-      return Promise.resolve({id: 1, upvotes: 1});
-    } 
-    else {
+      return Promise.resolve({ id: 1, upvotes: 1 });
+    } else {
       throw new Error('(Dev) Haiku failed to send.');
     }
   }
 
-  return snapshot
-    .ref
-    .update(newProps)
-    .then(_ => ({
-      id: snapshot.val().id, 
-      ...newProps
-    }));
+  return snapshot.ref.update(newProps).then(_ => ({
+    id: snapshot.val().id,
+    ...newProps
+  }));
 };
 
-export {
-  findHaiku,
-  updateHaiku
-};
+export { findHaiku, updateHaiku };

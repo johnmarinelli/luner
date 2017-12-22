@@ -6,15 +6,14 @@ import { Home, Haikus, About } from '../../../../../index';
 
 import './styles.css';
 
-function mapStyles (styles) {
+function mapStyles(styles) {
   return {
     opacity: styles.opacity,
     transform: `scale(${styles.scale})`
   };
 }
 
-
-function bounce (val) {
+function bounce(val) {
   return spring(val, { stiffness: 330, damping: 22 });
 }
 
@@ -35,24 +34,19 @@ const bounceTransition = {
   }
 };
 
-const Main = () => 
+const Main = () => (
   <main>
     <AnimatedSwitch
-        mapStyles={mapStyles}
-        atEnter={bounceTransition.atEnter} 
-        atLeave={bounceTransition.atLeave} 
-        atActive={bounceTransition.atActive} >
-      <Route 
-        exact 
-        path="/" 
-        component={Home} />
-      <Route 
-        path="/about" 
-        component={About} />
-      <Route 
-        path="/browse-haikus/:filter?" 
-        component={Haikus} />
+      mapStyles={mapStyles}
+      atEnter={bounceTransition.atEnter}
+      atLeave={bounceTransition.atLeave}
+      atActive={bounceTransition.atActive}
+    >
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/browse-haikus/:filter?" component={Haikus} />
     </AnimatedSwitch>
   </main>
+);
 
 export default Main;

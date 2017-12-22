@@ -31,13 +31,15 @@ const configureStore = () => {
   const reduxRouterMiddleware = routerMiddleware(history);
   let middlewares = [thunk, reduxRouterMiddleware];
 
-  if (debugEnabled) { middlewares.push(logger); }
-  
+  if (debugEnabled) {
+    middlewares.push(logger);
+  }
+
   const store = createStore(
     combineReducers({
       rootReducer,
       router: routerReducer
-    }), 
+    }),
     {
       rootReducer: preloadedState
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Line from './'; 
+import Line from './';
 
 const lineProps = {
   index: 0,

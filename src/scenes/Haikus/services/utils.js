@@ -7,11 +7,9 @@ import { now, getHoursDiff } from '../../../services/utils';
  * 1 upvote offsets ~ 5 hours of age difference at gravity = 1.8
  */
 const gravity = 1.01;
-const calculateScore = (ups, ageHours) =>
-  ups / Math.pow((ageHours + 2), gravity);
+const calculateScore = (ups, ageHours) => ups / Math.pow(ageHours + 2, gravity);
 
-const getAgeHours = (createdAtEpoch) =>
-  getHoursDiff(createdAtEpoch, now());
+const getAgeHours = createdAtEpoch => getHoursDiff(createdAtEpoch, now());
 
 const comparator = (s1, s2) => {
   if (s2 < s1) return -1;

@@ -1,17 +1,16 @@
 import React from 'react';
 
-const Logo = ({
-  width,
-}) => 
-  <img 
-    className="logo" 
-    src="/haiku-icon.svg" 
+const Logo = ({ width }) => (
+  <img
+    className="logo"
+    src="/haiku-icon.svg"
     alt="thehaiku.club logo."
-    width={width} />;
-
+    width={width}
+  />
+);
 
 Logo.defaultProps = {
   width: '100px'
-}
+};
 
 export default Logo;

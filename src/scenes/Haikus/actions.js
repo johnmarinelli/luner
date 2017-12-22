@@ -6,7 +6,7 @@ const haikusIncrementPage = () => ({
   type: 'HAIKUS_INCREMENT_PAGE'
 });
 
-const haikusLastPageReached = (isLastPageReached) => ({
+const haikusLastPageReached = isLastPageReached => ({
   type: 'HAIKUS_LAST_PAGE_REACHED',
   isLastPageReached
 });
@@ -23,39 +23,38 @@ const haikusUpvoteSuccess = (id, upvotes) => ({
   upvotes
 });
 
-const haikusUpvoteError = (error) => ({
+const haikusUpvoteError = error => ({
   type: 'HAIKUS_UPVOTE_ERROR',
   error
 });
 
-const haikusFirebaseChildAdded = (haiku) => ({
+const haikusFirebaseChildAdded = haiku => ({
   type: 'HAIKUS_FIREBASE_CHILD_ADDED',
   filter: 'all',
   haiku
 });
 
-const haikusFirebaseChildUpdated = (haiku) => ({
+const haikusFirebaseChildUpdated = haiku => ({
   type: 'HAIKUS_FIREBASE_CHILD_UPDATED',
   haiku
 });
 
-const haikusFirebaseChildRemoved = (id) => ({
+const haikusFirebaseChildRemoved = id => ({
   type: 'HAIKUS_FIREBASE_CHILD_REMOVED',
   id
 });
 
-const upvoteHaiku = (haiku) => (dispatch) =>
+const upvoteHaiku = haiku => dispatch =>
   api
     .findHaiku(haiku.id)
-    .then(ss => api.updateHaiku(ss, {
-      updatedAt: Date.now(), 
-      upvotes: (haiku.upvotes || 0) + 1
-    }))
-    .then(({id, upvotes}) => 
-      dispatch(haikusUpvoteSuccess(id, upvotes)))
-    .catch(err =>
-      dispatch(haikusUpvoteError(err)));
-
+    .then(ss =>
+      api.updateHaiku(ss, {
+        updatedAt: Date.now(),
+        upvotes: (haiku.upvotes || 0) + 1
+      })
+    )
+    .then(({ id, upvotes }) => dispatch(haikusUpvoteSuccess(id, upvotes)))
+    .catch(err => dispatch(haikusUpvoteError(err)));
 
 export {
   haikusIncrementPage,

@@ -1,16 +1,15 @@
 import { v4 } from 'node-uuid';
 import { debugEnabled, fire } from '../../../../services/';
 
-const compareArrays = (a, b) => 
-  a.length === b.length &&
-    a.every((v, i) => v === b[i]);
+const compareArrays = (a, b) =>
+  a.length === b.length && a.every((v, i) => v === b[i]);
 
 const validateSyllables = (lines, expectedCounts) => {
   const actualCounts = lines.map(line => line.syllables);
-  return compareArrays(actualCounts, expectedCounts)
+  return compareArrays(actualCounts, expectedCounts);
 };
 
-const addHaiku = (haiku) => {
+const addHaiku = haiku => {
   const createdAt = Date.now();
   const fbHaiku = { id: v4(), ...haiku, createdAt };
 
@@ -26,8 +25,4 @@ const addHaiku = (haiku) => {
     .then(_ => fbHaiku);
 };
 
-export {
-  compareArrays,
-  validateSyllables,
-  addHaiku
-};
+export { compareArrays, validateSyllables, addHaiku };

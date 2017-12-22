@@ -1,27 +1,29 @@
 import { now } from '../../../../services/utils';
 
-const initialUpvoteState  = {
+const initialUpvoteState = {
   upvotesRemaining: 3,
   lastUpvote: 0
 };
 
 const upvotesRemaining = (state, action) => {
   switch (action.type) {
-    case 'HAIKUS_UPVOTE_SUCCESS': 
+    case 'HAIKUS_UPVOTE_SUCCESS':
       return state - 1;
-    default: return state;
+    default:
+      return state;
   }
 };
 
 const lastUpvote = (state, action) => {
   switch (action.type) {
-    case 'HAIKUS_UPVOTE_SUCCESS': 
+    case 'HAIKUS_UPVOTE_SUCCESS':
       return now();
-    default: return state;
+    default:
+      return state;
   }
 };
 
-const getUpvotesRemaining = (state) =>
+const getUpvotesRemaining = state =>
   state.rootReducer.haikus.upvotes.upvotesRemaining;
 
 const upvotes = (state = initialUpvoteState, action) => {
@@ -31,12 +33,11 @@ const upvotes = (state = initialUpvoteState, action) => {
         upvotesRemaining: upvotesRemaining(state.upvotesRemaining, action),
         lastUpvote: lastUpvote(state.lastUpvote, action)
       });
-    default: return state;
+    default:
+      return state;
   }
 };
 
-export { 
-  getUpvotesRemaining
-};
+export { getUpvotesRemaining };
 
 export default upvotes;

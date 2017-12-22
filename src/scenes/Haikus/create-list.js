@@ -1,27 +1,25 @@
 import { combineReducers } from 'redux';
- 
- /*
+
+/*
  * this file controls the slice of state starting at `listByFilter`.
  */
 
-const createList = (filter) => {
-
+const createList = filter => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case 'HAIKUS_PAGINATED_SUCCESS': {
-        return filter === action.filter ?
-          [...state, ...action.response.result] : 
-          state;
+        return filter === action.filter
+          ? [...state, ...action.response.result]
+          : state;
       }
       case 'HAIKUS_FIREBASE_CHILD_ADDED': {
-        return filter === action.filter ?
-          [...state, action.haiku.id] : 
-          state;
+        return filter === action.filter ? [...state, action.haiku.id] : state;
       }
       case 'HAIKUS_FIREBASE_CHILD_REMOVED': {
         return state.filter(id => id !== action.id);
       }
-      default: return state;
+      default:
+        return state;
     }
   };
 
@@ -34,10 +32,13 @@ const createList = (filter) => {
     }
 
     switch (action.type) {
-      case 'HAIKUS_PAGINATED_REQUEST': return true;
-      case 'HAIKUS_PAGINATED_SUCCESS': 
-      case 'HAIKUS_PAGINATED_FAILURE': return false;
-      default: return state;
+      case 'HAIKUS_PAGINATED_REQUEST':
+        return true;
+      case 'HAIKUS_PAGINATED_SUCCESS':
+      case 'HAIKUS_PAGINATED_FAILURE':
+        return false;
+      default:
+        return state;
     }
   };
 
@@ -47,14 +48,17 @@ const createList = (filter) => {
     }
 
     switch (action.type) {
-      case 'HAIKUS_PAGINATED_FAILURE': return action.message;
+      case 'HAIKUS_PAGINATED_FAILURE':
+        return action.message;
       case 'HAIKUS_PAGINATED_REQUEST':
-      case 'HAIKUS_PAGINATED_SUCCESS': return null;
-      default: return state;
+      case 'HAIKUS_PAGINATED_SUCCESS':
+        return null;
+      default:
+        return state;
     }
   };
 
-  return combineReducers({ids, isFetching, errorMessage});
+  return combineReducers({ ids, isFetching, errorMessage });
 };
 
 export default createList;
@@ -62,6 +66,6 @@ export default createList;
 /*
  * selector to get ids from current state
  */
-export const getIds = (state) => state.ids;
-export const getIsFetching = (state) => state.isFetching;
-export const getErrorMessage = (state) => state.errorMessage;
+export const getIds = state => state.ids;
+export const getIsFetching = state => state.isFetching;
+export const getErrorMessage = state => state.errorMessage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Logo from './'; 
+import Logo from './';
 
 const wrapper = shallow(<Logo />);
 

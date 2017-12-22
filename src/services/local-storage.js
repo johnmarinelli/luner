@@ -3,8 +3,8 @@ import { twentyFourHoursAgo } from './utils';
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
-    if (null === serializedState) { 
-      return undefined; 
+    if (null === serializedState) {
+      return undefined;
     }
 
     /*
@@ -23,7 +23,7 @@ const loadState = () => {
   }
 };
 
-const saveState = (state) => {
+const saveState = state => {
   try {
     const serializedState = JSON.stringify(state.rootReducer);
     localStorage.setItem('state', serializedState);
@@ -32,7 +32,4 @@ const saveState = (state) => {
   }
 };
 
-export {
-  loadState,
-  saveState
-};
+export { loadState, saveState };

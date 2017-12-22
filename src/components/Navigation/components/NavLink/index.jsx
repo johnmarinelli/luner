@@ -4,14 +4,12 @@ import { omit } from 'lodash';
 
 import './styles.css';
 
-const MyNavLink = (props) => {
+const MyNavLink = props => {
   const { children } = props;
   const newProps = omit(props, 'children');
 
   return (
-    <NavLink 
-      {...newProps} 
-      activeClassName='active'>
+    <NavLink {...newProps} activeClassName="active">
       {children}
     </NavLink>
   );

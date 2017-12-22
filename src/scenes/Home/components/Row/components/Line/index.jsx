@@ -5,36 +5,30 @@ import { Input } from '../../../../../../components';
 import './styles.css';
 
 class Line extends React.Component {
-
-  focus () {
+  focus() {
     this.input.focus();
   }
 
-  setFirstChar (c) {
+  setFirstChar(c) {
     this.input.setValue(c + this.input.getValue());
   }
 
-  clearInput () {
+  clearInput() {
     this.input.setValue('');
   }
 
-  constructor () {
+  constructor() {
     super();
     this.input = null;
   }
 
-  render () {
-    const {
-      index,
-      maxSyllableCount,
-      lineContent,
-      onKeyUp
-    } = this.props;
+  render() {
+    const { index, maxSyllableCount, lineContent, onKeyUp } = this.props;
     const autofocus = 0 === index;
 
     return (
       <Input
-        ref={input => this.input = input}
+        ref={input => (this.input = input)}
         type="text"
         onKeyUp={onKeyUp}
         defaultValue={lineContent}
@@ -43,10 +37,10 @@ class Line extends React.Component {
         maxLength={maxSyllableCount * 10}
         autoFocus={autofocus}
         spellCheck="true"
-        />
+      />
     );
   }
-};
+}
 
 Line.propTypes = {
   index: PropTypes.number.isRequired,
@@ -56,4 +50,3 @@ Line.propTypes = {
 };
 
 export default Line;
-

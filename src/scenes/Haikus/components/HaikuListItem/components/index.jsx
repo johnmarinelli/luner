@@ -1,5 +1,3 @@
 import ListItem from './ListItem';
 
-export {
-  ListItem
-};
+export { ListItem };

@@ -5,7 +5,4 @@ import { schema } from 'normalizr';
 const haiku = new schema.Entity('haikus');
 const arrayOfHaikus = new schema.Array(haiku);
 
-export { 
-  haiku,
-  arrayOfHaikus
-};
+export { haiku, arrayOfHaikus };

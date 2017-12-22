@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Upvote from './'; 
+import Upvote from './';
 import sinon from 'sinon';
 
 const mock = sinon.spy();

@@ -17,8 +17,7 @@ if ('test' === process.env.NODE_ENV) {
     storageBucket: '',
     messagingSenderId: ''
   };
-}
-else {
+} else {
   config = prodConfig;
 }
 
@@ -26,18 +25,22 @@ let fire = firebase.initializeApp(config);
 const firebaseEventListeners = {};
 const attachFirebaseListener = (event, cb) => {
   if ('test' !== process.env.NODE_ENV) {
-    const handle = fire.database().ref('haikus').on(event, cb);
+    const handle = fire
+      .database()
+      .ref('haikus')
+      .on(event, cb);
     firebaseEventListeners[event] = handle;
     return handle;
-  }
-  else return null;
+  } else return null;
 };
 
-const detachFirebaseListener = (event) => {
+const detachFirebaseListener = event => {
   if ('test' !== process.env.NODE_ENV) {
-    return fire.database().ref('haikus').off(event, firebaseEventListeners[event])
-  }
-  else return null;
+    return fire
+      .database()
+      .ref('haikus')
+      .off(event, firebaseEventListeners[event]);
+  } else return null;
 };
 
 const paginationOpts = {
@@ -57,19 +60,18 @@ if ('test' === process.env.NODE_ENV) {
     on: jest.fn(),
     off: jest.fn()
   };
-}
-else {
-  paginator = new FirebasePaginator(firebase.database().ref('haikus'), paginationOpts);
+} else {
+  paginator = new FirebasePaginator(
+    firebase.database().ref('haikus'),
+    paginationOpts
+  );
 }
 
 if (debugEnabled) {
-  paginator.listen((eventName, payload) => 
-    console.log(`Fired ${eventName} with the following payload: `, payload));
+  paginator.listen((eventName, payload) =>
+    console.log(`Fired ${eventName} with the following payload: `, payload)
+  );
 }
 
-export { 
-  paginator,
-  attachFirebaseListener,
-  detachFirebaseListener
-};
+export { paginator, attachFirebaseListener, detachFirebaseListener };
 export default fire;

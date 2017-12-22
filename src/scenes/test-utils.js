@@ -14,7 +14,7 @@ import { ReactWrapper } from 'enzyme';
  *    dispatchSpy: a jest spy function to be used on assertions of dispatch action calls
  *  }
  */
-const setupIntegrationTests = (reducers) => {
+const setupIntegrationTests = reducers => {
   // create a mock jest function for asserting dispatch actions
   const dispatchSpy = jest.fn(() => ({}));
   const reducerSpy = (state, action) => dispatchSpy(action);
@@ -40,6 +40,4 @@ const setupIntegrationTests = (reducers) => {
   return { store, dispatchSpy };
 };
 
-export {
-  setupIntegrationTests
-};
+export { setupIntegrationTests };

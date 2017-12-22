@@ -4,12 +4,12 @@ import { omit } from 'lodash';
 
 import './styles.css';
 
-const InlineLink = (props) => {
+const InlineLink = props => {
   const { children } = props;
   const newProps = omit(props, 'children');
 
   return (
-    <NavLink to='/' className='inline' {...newProps}>
+    <NavLink to="/" className="inline" {...newProps}>
       {children}
     </NavLink>
   );

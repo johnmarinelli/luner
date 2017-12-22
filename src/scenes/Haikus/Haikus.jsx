@@ -5,14 +5,13 @@ const Haikus = ({
   renderedFeaturedHaiku,
   loadingAnimation,
   showMore
-}) =>
+}) => (
   <div className="haikus">
     {renderedFeaturedHaiku}
-    <ul>
-      {renderedHaikus}
-    </ul>
+    <ul>{renderedHaikus}</ul>
     {showMore}
     {loadingAnimation}
-  </div>;
+  </div>
+);
 
 export default Haikus;

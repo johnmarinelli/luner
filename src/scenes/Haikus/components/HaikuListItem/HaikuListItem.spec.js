@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HaikuListItem from './'; 
+import HaikuListItem from './';
 
 const mockHaiku = {
   id: 0,
@@ -17,7 +17,9 @@ const mockHaiku = {
   ],
   author: 'test'
 };
-const wrapper = shallow(<HaikuListItem haiku={mockHaiku} sendUpvote={jest.fn()}/>);
+const wrapper = shallow(
+  <HaikuListItem haiku={mockHaiku} sendUpvote={jest.fn()} />
+);
 
 describe('(Component) ListItem', () => {
   it('renders successfully', () => {

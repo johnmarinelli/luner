@@ -2,7 +2,7 @@ const initialState = {
   lines: [
     { content: '', syllables: 0 },
     { content: '', syllables: 0 },
-    { content: '', syllables: 0 },
+    { content: '', syllables: 0 }
   ],
   author: 'anonymous'
 };
@@ -17,9 +17,10 @@ const lines = (state, action) => {
         ...state.slice(index + 1)
       ];
     }
-    case 'HAIKU_ADD_SUCCESS': 
+    case 'HAIKU_ADD_SUCCESS':
       return initialState.lines;
-    default: return state;
+    default:
+      return state;
   }
 };
 
@@ -28,7 +29,8 @@ const author = (state, action) => {
     case 'HAIKU_AUTHOR_KEYUP': {
       return action.author;
     }
-    default: return state;
+    default:
+      return state;
   }
 };
 
@@ -43,12 +45,11 @@ const createHaiku = (state = initialState, action) => {
       return Object.assign({}, state, {
         author: author(state.author, action)
       });
-    default: return state;
+    default:
+      return state;
   }
 };
 
-export {
-  initialState
-};
+export { initialState };
 
 export default createHaiku;

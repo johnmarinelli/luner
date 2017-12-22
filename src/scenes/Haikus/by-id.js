@@ -4,13 +4,13 @@
 
 const upvoteSuccess = (state, action) => {
   switch (action.type) {
-    case 'HAIKUS_UPVOTE_SUCCESS': 
+    case 'HAIKUS_UPVOTE_SUCCESS':
       return Object.assign({}, state, {
         upvotes: action.upvotes
       });
-    default: return state;
+    default:
+      return state;
   }
-
 };
 
 /*
@@ -27,10 +27,10 @@ const byId = (state = {}, action) => {
           ...action.response.entities.haikus
         };
       }
-      default: return state;
+      default:
+        return state;
     }
-  }
-  else {
+  } else {
     switch (action.type) {
       case 'HAIKUS_UPVOTE_SUCCESS': {
         const { id } = action;
@@ -42,23 +42,22 @@ const byId = (state = {}, action) => {
         return {
           ...state,
           [action.haiku.id]: action.haiku
-        }
+        };
       }
       case 'HAIKUS_FIREBASE_CHILD_UPDATED': {
         return {
           ...state,
           [action.haiku.id]: action.haiku
-        }
+        };
       }
       case 'HAIKUS_FIREBASE_CHILD_REMOVED': {
         const { [action.id + '']: _, ...newState } = state;
         return newState;
       }
-      default: return state;
-
+      default:
+        return state;
     }
   }
-
 };
 
 export default byId;

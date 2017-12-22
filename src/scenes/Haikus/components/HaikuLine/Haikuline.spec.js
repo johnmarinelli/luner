@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HaikuLine from './'; 
+import HaikuLine from './';
 
 const wrapper = shallow(<HaikuLine />);
 

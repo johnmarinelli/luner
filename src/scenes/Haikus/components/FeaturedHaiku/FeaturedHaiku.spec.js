@@ -17,7 +17,9 @@ const mockHaiku = {
   ],
   author: 'test'
 };
-const wrapper = shallow(<FeaturedHaiku haiku={mockHaiku} sendUpvote={jest.fn()}/>);
+const wrapper = shallow(
+  <FeaturedHaiku haiku={mockHaiku} sendUpvote={jest.fn()} />
+);
 
 describe('(Component) ListItem', () => {
   it('renders successfully', () => {

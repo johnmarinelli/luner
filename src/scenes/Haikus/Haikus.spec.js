@@ -26,8 +26,7 @@ describe('(Component) Haikus', () => {
       },
 
       router: {
-        location: {
-        }
+        location: {}
       }
     };
 
@@ -36,8 +35,7 @@ describe('(Component) Haikus', () => {
     wrapper = mount(
       <Provider store={store}>
         <MemoryRouter>
-          <Route path="/" component={Haikus}>
-          </Route>
+          <Route path="/" component={Haikus} />
         </MemoryRouter>
       </Provider>
     );
@@ -55,7 +53,7 @@ describe('(Redux Store) Haikus', () => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
     initialState = haikus(undefined, {});
-    const state = { rootReducer: { haikus: initialState }};
+    const state = { rootReducer: { haikus: initialState } };
 
     store = mockStore(state);
   });
@@ -70,21 +68,18 @@ describe('(Redux Store) Haikus', () => {
     };
     expect(storeActions).toEqual([expectedPayload]);
   });
-
 });
 
 describe('(Reducers) Haikus', () => {
-
   beforeEach(() => {
     initialState = haikus(undefined, {});
   });
 
   it('should handle HAIKUS_UPVOTE_SUCCESS', () => {
     expect(
-      haikus(initialState, actions.haikusUpvoteSuccess('0', 1)).upvotes.upvotesRemaining
-    ).toEqual(
-      2
-    );
+      haikus(initialState, actions.haikusUpvoteSuccess('0', 1)).upvotes
+        .upvotesRemaining
+    ).toEqual(2);
   });
 
   it('should handle HAIKUS_FIREBASE_CHILD_ADDED', () => {
@@ -93,10 +88,10 @@ describe('(Reducers) Haikus', () => {
       author: 'john'
     };
     expect(
-      Object.keys(haikus(initialState, actions.haikusFirebaseChildAdded(haiku)).byId).length
-    ).toEqual(
-      1
-    );
+      Object.keys(
+        haikus(initialState, actions.haikusFirebaseChildAdded(haiku)).byId
+      ).length
+    ).toEqual(1);
   });
 
   it('should handle HAIKUS_FIREBASE_CHILD_UPDATED', () => {
@@ -104,12 +99,14 @@ describe('(Reducers) Haikus', () => {
       id: 1,
       author: 'jake'
     };
-    const newHaikus = haikus(initialState, actions.haikusFirebaseChildAdded(haiku));
-    expect(
-      haikus(newHaikus, actions.haikusFirebaseChildUpdated(haiku)).byId[1].author
-    ).toEqual(
-      'jake'
+    const newHaikus = haikus(
+      initialState,
+      actions.haikusFirebaseChildAdded(haiku)
     );
+    expect(
+      haikus(newHaikus, actions.haikusFirebaseChildUpdated(haiku)).byId[1]
+        .author
+    ).toEqual('jake');
   });
 
   it('should handle HAIKUS_FIREBASE_CHILD_REMOVED', () => {
@@ -117,13 +114,15 @@ describe('(Reducers) Haikus', () => {
       id: 1,
       author: 'jake'
     };
-    const newHaikus = haikus(initialState, actions.haikusFirebaseChildAdded(haiku));
+    const newHaikus = haikus(
+      initialState,
+      actions.haikusFirebaseChildAdded(haiku)
+    );
 
     expect(
-      Object.keys(haikus(newHaikus, actions.haikusFirebaseChildRemoved(haiku.id)).byId).length
-    ).toEqual(
-      0
-    );
+      Object.keys(
+        haikus(newHaikus, actions.haikusFirebaseChildRemoved(haiku.id)).byId
+      ).length
+    ).toEqual(0);
   });
 });
-

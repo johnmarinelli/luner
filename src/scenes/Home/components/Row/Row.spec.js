@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Row from './'; 
+import Row from './';
 
 const props = {
   index: 0,

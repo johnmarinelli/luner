@@ -4,21 +4,20 @@ import { omit } from 'lodash';
 import './styles.css';
 
 class Input extends React.Component {
-
-  focus () {
+  focus() {
     return this.htmlElement.focus();
   }
 
-  getValue () {
+  getValue() {
     return this.htmlElement.value;
   }
 
-  setValue (val) {
+  setValue(val) {
     this.htmlElement.value = val;
     return val;
   }
 
-  constructor () {
+  constructor() {
     super();
     this.htmlElement = null;
     this.focus = this.focus.bind(this);
@@ -26,15 +25,13 @@ class Input extends React.Component {
     this.setValue = this.setValue.bind(this);
   }
 
-  render () {
+  render() {
     const { props } = this;
     const { children } = props;
     const newProps = omit(props, 'children');
 
     return (
-      <input 
-        ref={el => this.htmlElement = el} 
-        {...newProps}>
+      <input ref={el => (this.htmlElement = el)} {...newProps}>
         {children}
       </input>
     );

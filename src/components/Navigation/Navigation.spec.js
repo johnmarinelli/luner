@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Navigation from './'; 
+import Navigation from './';
 
 const wrapper = shallow(<Navigation />);
 

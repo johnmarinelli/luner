@@ -5,19 +5,12 @@ import FontAwesome from 'react-fontawesome';
 
 import './styles.css';
 
-const Upvote = ({
-  numUpvotes,
-  sendUpvote
-}) =>
-  <Button
-    className="upvotes"
-    onClick={sendUpvote}>
-    <FontAwesome name='thumbs-up' />
-    <span
-      className="upvotes">
-      {numUpvotes}
-    </span>
+const Upvote = ({ numUpvotes, sendUpvote }) => (
+  <Button className="upvotes" onClick={sendUpvote}>
+    <FontAwesome name="thumbs-up" />
+    <span className="upvotes">{numUpvotes}</span>
   </Button>
+);
 
 Upvote.propTypes = {
   numUpvotes: PropTypes.number.isRequired,

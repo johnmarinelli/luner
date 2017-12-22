@@ -16,7 +16,7 @@ describe('(Component) Home', () => {
   beforeEach(() => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
-    store = mockStore({ rootReducer: { createHaiku: initialState  }});
+    store = mockStore({ rootReducer: { createHaiku: initialState } });
 
     wrapper = mount(
       <Provider store={store}>
@@ -36,7 +36,7 @@ describe('(Redux Store) Home', () => {
   beforeEach(() => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
-    const state = { rootReducer: { createHaiku: initialState }};
+    const state = { rootReducer: { createHaiku: initialState } };
 
     store = mockStore(state);
   });
@@ -66,30 +66,23 @@ describe('(Redux Store) Home', () => {
 
 describe('(Reducers) Home', () => {
   it('should return the initial state', () => {
-    expect(createHaiku(undefined, {}))
-      .toEqual(initialState);
+    expect(createHaiku(undefined, {})).toEqual(initialState);
   });
 
   it('should handle HAIKU_LINE_KEYUP', () => {
     expect(
       createHaiku(initialState, haikuLineKeyUp('a', 1, 0)).lines[0].content
-    ).toEqual(
-      'a'
-    );
+    ).toEqual('a');
   });
 
   it('should handle HAIKU_AUTHOR_KEYUP', () => {
-    expect(
-      createHaiku(initialState, haikuAuthorKeyUp('john')).author
-    ).toEqual(
+    expect(createHaiku(initialState, haikuAuthorKeyUp('john')).author).toEqual(
       'john'
     );
   });
-
 });
 
 describe('(Integration) Home', () => {
-
   let store, wrapper, dispatchSpy;
 
   beforeEach(() => {

@@ -7,7 +7,4 @@ import 'raf/polyfill';
 
 const store = configureStore();
 
-ReactDOM.render(
-  <Root store={store} />, 
-  document.getElementById('root')
-);
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));

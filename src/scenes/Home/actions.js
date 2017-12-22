@@ -5,7 +5,7 @@ export const haikuLineKeyUp = (content, syllables, index) => ({
   index
 });
 
-export const haikuAuthorKeyUp = (author) => ({
+export const haikuAuthorKeyUp = author => ({
   type: 'HAIKU_AUTHOR_KEYUP',
   author
 });

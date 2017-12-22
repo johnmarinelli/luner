@@ -4,8 +4,7 @@ describe('(Global) utils', () => {
   it('unique', () => {
     const ary = [5, 3, 1, 3, 7];
     const uniq = utils.unique(ary);
-    expect(uniq).
-      toEqual(expect.arrayContaining([5,3,1,7]));
+    expect(uniq).toEqual(expect.arrayContaining([5, 3, 1, 7]));
   });
 
   it('getHoursDiff', () => {
