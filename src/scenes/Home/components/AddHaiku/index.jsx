@@ -9,15 +9,20 @@ import { validateSyllables } from './services.js';
 import { Button } from './../../../../components';
 
 const mapStateToProps = state => ({
-  haiku: state.rootReducer.createHaiku
+  haiku: state.rootReducer.createHaiku,
+  fb: state.rootReducer.fb
 });
 
 const mapDispatchToProps = dispatch => ({
   addHaiku: haiku => dispatch(addHaiku(haiku))
 });
 
-let AddHaiku = ({ haiku, addHaiku, clearInputs }) => {
+let AddHaiku = ({ haiku, fb, addHaiku, clearInputs }) => {
   const dispatchAddHaiku = haiku => {
+    if (fb.loggedIn) {
+      haiku.fbProfile = fb.profile;
+    }
+
     const expectedCounts = [5, 3, 5];
 
     if (validateSyllables(haiku.lines, expectedCounts)) {

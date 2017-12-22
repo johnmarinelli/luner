@@ -123,7 +123,6 @@ class ConnectedHaikus extends React.Component {
       ));
 
     const featuredHaikuStyle = {};
-    console.log(featuredHaiku);
 
     const renderedFeaturedHaiku = featuredHaiku ? (
       <FeaturedHaiku
