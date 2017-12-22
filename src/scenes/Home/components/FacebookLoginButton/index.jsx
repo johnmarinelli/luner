@@ -23,6 +23,10 @@ class FacebookLoginButton extends React.Component {
     super();
   }
 
+  componentDidMount() {
+    this.setState({ hover: false });
+  }
+
   handleResponse = res => {
     const { loggedIn, fbLoggedIn, fbLoggedOut } = this.props;
     if (loggedIn) {
@@ -52,6 +56,12 @@ class FacebookLoginButton extends React.Component {
       </span>
     );
 
+    console.log(this.state);
+    const disclaimer =
+      this.state && !loggedIn && this.state.hover
+        ? 'Logging in will let others see your facebook attached to your haiku.  Please only log in if you want to share publicly!'
+        : null;
+
     return (
       <FacebookProvider appId="372220496538727">
         <Login
@@ -59,9 +69,20 @@ class FacebookLoginButton extends React.Component {
           onResponse={this.handleResponse}
           onError={this.handleError}
           render={({ isLoading, isWorking, onClick }) => (
-            <a onClick={onClick} className="FacebookLoginButton">
-              {isLoading || isWorking ? 'Please Wait...' : fbView}
-            </a>
+            <div>
+              <div style={{ display: 'inline-block', fontSize: '0.75em' }}>
+                {disclaimer}
+              </div>
+              <a
+                style={{ float: 'right' }}
+                onMouseEnter={_ => this.setState({ hover: true })}
+                onMouseLeave={_ => this.setState({ hover: false })}
+                onClick={onClick}
+                className="FacebookLoginButton"
+              >
+                {isLoading || isWorking ? 'Please Wait...' : fbView}
+              </a>
+            </div>
           )}
         />
       </FacebookProvider>
