@@ -21,6 +21,7 @@ const mapDispatchToProps = {
 class FacebookLoginButton extends React.Component {
   constructor() {
     super();
+    this.state = { hover: false };
   }
 
   componentDidMount() {
@@ -56,11 +57,9 @@ class FacebookLoginButton extends React.Component {
       </span>
     );
 
-    console.log(this.state);
-    const disclaimer =
-      this.state && !loggedIn && this.state.hover
-        ? 'Logging in will let others see your facebook attached to your haiku.  Please only log in if you want to share publicly!'
-        : null;
+    const disclaimerStyle = { display: 'inline-block', fontSize: '0.75em' };
+    disclaimerStyle.visibility =
+      !loggedIn && this.state.hover ? 'visible' : 'hidden';
 
     return (
       <FacebookProvider appId="372220496538727">
@@ -70,9 +69,6 @@ class FacebookLoginButton extends React.Component {
           onError={this.handleError}
           render={({ isLoading, isWorking, onClick }) => (
             <div>
-              <div style={{ display: 'inline-block', fontSize: '0.75em' }}>
-                {disclaimer}
-              </div>
               <a
                 style={{ float: 'right' }}
                 onMouseEnter={_ => this.setState({ hover: true })}
@@ -82,6 +78,10 @@ class FacebookLoginButton extends React.Component {
               >
                 {isLoading || isWorking ? 'Please Wait...' : fbView}
               </a>
+              <div style={disclaimerStyle}>
+                Logging in will let others see your facebook attached to your
+                haiku. Please only log in if you want to share publicly!
+              </div>
             </div>
           )}
         />
