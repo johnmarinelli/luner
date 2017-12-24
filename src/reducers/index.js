@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import createHaiku from '../scenes/Home/reducers';
 import haikus from '../scenes/Haikus/reducers';
 import fb from '../scenes/Home/components/FacebookLoginButton/reducers';
+import ig from '../scenes/Home/components/InstagramLoginButton/reducers';
 
 /*
  * jm 12/10/17
@@ -28,6 +29,7 @@ import fb from '../scenes/Home/components/FacebookLoginButton/reducers';
  *    }
  *  },
  *  fb: { ...  }
+ *  ig: { ...  }
  *  ...
  *
  * }
@@ -36,7 +38,8 @@ import fb from '../scenes/Home/components/FacebookLoginButton/reducers';
 const rootReducer = combineReducers({
   createHaiku,
   haikus,
-  fb
+  fb,
+  ig
 });
 
 export default rootReducer;

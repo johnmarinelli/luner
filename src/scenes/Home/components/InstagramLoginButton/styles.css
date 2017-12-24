@@ -1,0 +1,11 @@
+.FacebookLoginButton {
+  padding: 10px;
+  color: white;
+  background-color: #3b5998;
+  text-align: center;
+}
+
+.FacebookLoginButton:hover {
+  cursor: pointer;
+  background-color: #2a4889;
+}

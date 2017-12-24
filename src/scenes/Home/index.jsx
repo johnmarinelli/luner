@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { haikuLineKeyUp, haikuAuthorKeyUp } from './actions';
 import { Input } from '../../components';
-import { Row, AddHaiku, FacebookLoginButton } from './components/';
+import {
+  Row,
+  AddHaiku,
+  FacebookLoginButton,
+  InstagramLoginButton
+} from './components/';
 
 import './styles.css';
 
@@ -120,6 +125,7 @@ class Home extends React.Component {
           />
         </label>
         <FacebookLoginButton />
+        <InstagramLoginButton />
         <AddHaiku clearInputs={this.clearInputs} />
       </div>
     );

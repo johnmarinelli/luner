@@ -27,17 +27,4 @@ const rankHaikus = (h1, h2) => {
   return comparator(h1Score, h2Score);
 };
 
-const parseQueryString = queryString =>
-  queryString.split('&').reduce((acc, kv) => {
-    const [key, value] = kv.split('=');
-    acc[key] = value;
-    return acc;
-  }, {});
-
-export {
-  calculateScore,
-  getAgeHours,
-  comparator,
-  rankHaikus,
-  parseQueryString
-};
+export { calculateScore, getAgeHours, comparator, rankHaikus };
