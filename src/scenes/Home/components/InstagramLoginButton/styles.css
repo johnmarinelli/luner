@@ -1,11 +1,13 @@
-.FacebookLoginButton {
+.InstagramLoginButton {
   padding: 10px;
   color: white;
-  background-color: #3b5998;
+  background: linear-gradient(#400080, transparent),
+    linear-gradient(200deg, #d047d1, #ff0000, #ffff00);
   text-align: center;
 }
 
-.FacebookLoginButton:hover {
+.InstagramLoginButton:hover {
   cursor: pointer;
-  background-color: #2a4889;
+  background: linear-gradient(#300070, transparent),
+    linear-gradient(200deg, #c036c0, #ee0000, #eeee00);
 }

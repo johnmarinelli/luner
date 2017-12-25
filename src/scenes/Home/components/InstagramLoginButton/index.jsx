@@ -104,13 +104,29 @@ class InstagramLoginButton extends React.Component {
   render() {
     const { loggedIn } = this.props.ig;
 
+    const disclaimerStyle = { display: 'inline-block', fontSize: '0.75em' };
+    disclaimerStyle.visibility =
+      !loggedIn && this.state.hover ? 'visible' : 'hidden';
+
     const onClick = loggedIn ? this.logout : this.getInstagramToken;
-    const text = loggedIn ? 'Logout' : 'Login';
+    const text = loggedIn ? 'Logout' : 'Connect with Instagram';
 
     return (
-      <button onClick={onClick}>
-        {text} <FontAwesome name="instagram" />
-      </button>
+      <div>
+        <a
+          style={{ float: 'right' }}
+          className="InstagramLoginButton"
+          onMouseEnter={_ => this.setState({ hover: true })}
+          onMouseLeave={_ => this.setState({ hover: false })}
+          onClick={onClick}
+        >
+          <FontAwesome name="instagram" /> {text}
+        </a>
+        <div style={disclaimerStyle}>
+          Logging in will let others see your Instagram attached to your haiku.
+          Please only log in if you want to share publicly!
+        </div>
+      </div>
     );
   }
 }

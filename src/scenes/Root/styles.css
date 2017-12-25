@@ -1,7 +1,9 @@
 html {
   box-sizing: border-box;
 }
-html *, html *:before, html *:after {
+html *,
+html *:before,
+html *:after {
   box-sizing: inherit;
 }
 
@@ -11,6 +13,12 @@ body {
 
 #root {
   padding: 20px;
-  font-family: "Times New Roman";
+  font-family: 'Times New Roman';
   font-size: 1.05em;
+}
+
+@media (max-width: 500px) {
+  #root {
+    padding: 0px;
+  }
 }

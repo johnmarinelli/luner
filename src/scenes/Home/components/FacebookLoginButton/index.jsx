@@ -46,7 +46,7 @@ class FacebookLoginButton extends React.Component {
 
   render() {
     const { loggedIn } = this.props;
-    const text = loggedIn ? 'Logout' : 'Login With Facebook';
+    const text = loggedIn ? 'Logout' : 'Connect with Facebook';
     const fbView = (
       <span>
         <FontAwesome name="facebook" /> {text}
@@ -75,7 +75,7 @@ class FacebookLoginButton extends React.Component {
                 {isLoading || isWorking ? 'Please Wait...' : fbView}
               </a>
               <div style={disclaimerStyle}>
-                Logging in will let others see your facebook attached to your
+                Logging in will let others see your Facebook attached to your
                 haiku. Please only log in if you want to share publicly!
               </div>
             </div>

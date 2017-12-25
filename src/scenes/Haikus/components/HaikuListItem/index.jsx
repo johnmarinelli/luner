@@ -5,29 +5,26 @@ import Upvote from '../Upvote';
 import HaikuLine from '../HaikuLine';
 import { ListItem } from './components';
 
+import './styles.css';
+
 const HaikuListItem = ({ haiku, sendUpvote }) => {
   /*
    * TODO: refactor facebook/ig profile button into its own class
-   * or link it in the author
    */
   const { fbProfile, igProfile } = haiku;
   const fbStyle = {
-    padding: '0',
-    margin: '5px',
-    background: 'blue'
+    padding: '0 10px'
   };
   const fbConnection = fbProfile ? (
-    <span>
-      <a style={fbStyle} target="_blank" href={fbProfile.link}>
-        <FontAwesome name="facebook" />
-      </a>
-    </span>
+    <a style={fbStyle} target="_blank" href={fbProfile.link}>
+      <span>
+        <FontAwesome name="facebook fa-1-5x" />
+      </span>
+    </a>
   ) : null;
 
   const igStyle = {
-    padding: '0',
-    margin: '5px',
-    background: 'red'
+    padding: '0 10px'
   };
   const igConnection = igProfile ? (
     <span>
@@ -36,10 +33,18 @@ const HaikuListItem = ({ haiku, sendUpvote }) => {
         target="_blank"
         href={`https://instagram.com/${igProfile.username}`}
       >
-        <FontAwesome name="instagram" />
+        <FontAwesome name="instagram fa-1-5x" />
       </a>
     </span>
   ) : null;
+
+  const socialButtons = (
+    <div className="social-buttons">
+      {fbConnection}
+      {igConnection}
+      <Upvote numUpvotes={haiku.upvotes || 0} sendUpvote={sendUpvote} />
+    </div>
+  );
 
   return (
     <ListItem>
@@ -47,9 +52,7 @@ const HaikuListItem = ({ haiku, sendUpvote }) => {
         <HaikuLine line={line.content} key={idx} />
       ))}
       <span>- {haiku.author || 'anonymous'}</span>
-      {fbConnection}
-      {igConnection}
-      <Upvote numUpvotes={haiku.upvotes || 0} sendUpvote={sendUpvote} />
+      {socialButtons}
     </ListItem>
   );
 };

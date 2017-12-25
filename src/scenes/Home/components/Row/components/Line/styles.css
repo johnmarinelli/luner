@@ -20,10 +20,10 @@
 
 .row-wrapper .line:focus {
   outline: none;
-  border-color: rgba(175, 47, 47, 1.0);
+  border-color: rgba(175, 47, 47, 1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .row-wrapper .line {
     border: none;
     border-bottom: solid thin;

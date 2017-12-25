@@ -1,0 +1,14 @@
+.social-buttons {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.social-buttons a:hover {
+  background: initial;
+}
+
+.fa.fa-1-5x {
+  font-size: 1.5em;
+}

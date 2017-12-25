@@ -10,9 +10,8 @@ div.top-level-container {
   margin: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   div.top-level-container {
     width: 100%;
   }
 }
-
