@@ -10,17 +10,22 @@ import { Button } from './../../../../components';
 
 const mapStateToProps = state => ({
   haiku: state.rootReducer.createHaiku,
-  fb: state.rootReducer.fb
+  fb: state.rootReducer.fb,
+  ig: state.rootReducer.ig
 });
 
 const mapDispatchToProps = dispatch => ({
   addHaiku: haiku => dispatch(addHaiku(haiku))
 });
 
-let AddHaiku = ({ haiku, fb, addHaiku, clearInputs }) => {
+let AddHaiku = ({ haiku, fb, ig, addHaiku, clearInputs }) => {
   const dispatchAddHaiku = haiku => {
     if (fb.loggedIn) {
       haiku.fbProfile = fb.profile;
+    }
+
+    if (ig.loggedIn) {
+      haiku.igProfile = ig.profile;
     }
 
     const expectedCounts = [5, 3, 5];

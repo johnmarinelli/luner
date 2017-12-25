@@ -1,6 +1,8 @@
 export const igLoggedIn = profile => ({
   type: 'IG_LOGGED_IN',
-  ...profile
+  profile: {
+    ...profile
+  }
 });
 
 export const igLoggedOut = _ => ({

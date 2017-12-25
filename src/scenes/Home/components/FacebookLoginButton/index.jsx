@@ -24,10 +24,6 @@ class FacebookLoginButton extends React.Component {
     this.state = { hover: false };
   }
 
-  componentDidMount() {
-    this.setState({ hover: false });
-  }
-
   handleResponse = res => {
     const { loggedIn, fbLoggedIn, fbLoggedOut } = this.props;
     if (loggedIn) {

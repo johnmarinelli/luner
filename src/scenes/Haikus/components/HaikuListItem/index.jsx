@@ -7,10 +7,10 @@ import { ListItem } from './components';
 
 const HaikuListItem = ({ haiku, sendUpvote }) => {
   /*
-   * TODO: refactor facebook profile button into its own class
+   * TODO: refactor facebook/ig profile button into its own class
    * or link it in the author
    */
-  const { fbProfile } = haiku;
+  const { fbProfile, igProfile } = haiku;
   const fbStyle = {
     padding: '0',
     margin: '5px',
@@ -24,6 +24,23 @@ const HaikuListItem = ({ haiku, sendUpvote }) => {
     </span>
   ) : null;
 
+  const igStyle = {
+    padding: '0',
+    margin: '5px',
+    background: 'red'
+  };
+  const igConnection = igProfile ? (
+    <span>
+      <a
+        style={igStyle}
+        target="_blank"
+        href={`https://instagram.com/${igProfile.username}`}
+      >
+        <FontAwesome name="instagram" />
+      </a>
+    </span>
+  ) : null;
+
   return (
     <ListItem>
       {haiku.lines.map((line, idx) => (
@@ -31,6 +48,7 @@ const HaikuListItem = ({ haiku, sendUpvote }) => {
       ))}
       <span>- {haiku.author || 'anonymous'}</span>
       {fbConnection}
+      {igConnection}
       <Upvote numUpvotes={haiku.upvotes || 0} sendUpvote={sendUpvote} />
     </ListItem>
   );
